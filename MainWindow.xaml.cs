@@ -183,29 +183,6 @@ namespace Whiteboard
                 EmployeeThursday = "24/7",
                 EmployeeFriday = "24/7"
             });
-            ScheduleData.Add(new SchedData()
-            {
-                EmployeeName = "Tony France",
-                EmployeePhoto = "Images/EmpPhoto.png",
-                EmployeeCurrentStatus = "Attentio-what?",
-                EmployeeMonday = "5am - 5pm",
-                EmployeeTuesday = "5am - 5pm",
-                EmployeeWednesday = "5am - 5pm",
-                EmployeeThursday = "5am - 5pm",
-                EmployeeFriday = "5am - 5pm"
-            });
-
-            ScheduleData.Add(new SchedData()
-            {
-                EmployeeName = "Sara Teran",
-                EmployeePhoto = "Images/EmpPhoto.png",
-                EmployeeCurrentStatus = "Cutie Pie",
-                EmployeeMonday = "24/7",
-                EmployeeTuesday = "24/7",
-                EmployeeWednesday = "24/7",
-                EmployeeThursday = "24/7",
-                EmployeeFriday = "24/7"
-            });
         }
 
         // Core functions such as top buttons and drag/minimize/close functionality
