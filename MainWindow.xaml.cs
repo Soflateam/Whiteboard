@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Text;
+using System.ServiceModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -13,7 +14,7 @@ using System.Windows.Shapes;
 
 namespace Whiteboard
 {
-    public partial class MainWindow : Window, INotifyPropertyChanged
+    public partial class MainWindow : Window
     {
         public ObservableCollection<SchedData> ScheduleData { get; set; }
 
@@ -46,7 +47,6 @@ namespace Whiteboard
                 EmployeeThursday = "5am - 5pm",
                 EmployeeFriday = "5am - 5pm"
             });
-
             ScheduleData.Add(new SchedData()
             {
                 EmployeeName = "Sara Teran",
@@ -80,7 +80,6 @@ namespace Whiteboard
                 EmployeeThursday = "5am - 5pm",
                 EmployeeFriday = "5am - 5pm"
             });
-
             ScheduleData.Add(new SchedData()
             {
                 EmployeeName = "Sara Teran",
@@ -114,7 +113,6 @@ namespace Whiteboard
                 EmployeeThursday = "5am - 5pm",
                 EmployeeFriday = "5am - 5pm"
             });
-
             ScheduleData.Add(new SchedData()
             {
                 EmployeeName = "Sara Teran",
@@ -148,7 +146,6 @@ namespace Whiteboard
                 EmployeeThursday = "5am - 5pm",
                 EmployeeFriday = "5am - 5pm"
             });
-
             ScheduleData.Add(new SchedData()
             {
                 EmployeeName = "Sara Teran",
@@ -171,7 +168,28 @@ namespace Whiteboard
                 EmployeeThursday = "5am - 5pm",
                 EmployeeFriday = "5am - 5pm"
             });
-
+            ScheduleData.Add(new SchedData()
+            {
+                EmployeeName = "Sara Teran",
+                EmployeePhoto = "Images/EmpPhoto.png",
+                EmployeeCurrentStatus = "Cutie Pie",
+                EmployeeMonday = "24/7",
+                EmployeeTuesday = "24/7",
+                EmployeeWednesday = "24/7",
+                EmployeeThursday = "24/7",
+                EmployeeFriday = "24/7"
+            });
+            ScheduleData.Add(new SchedData()
+            {
+                EmployeeName = "Sara Teran",
+                EmployeePhoto = "Images/EmpPhoto.png",
+                EmployeeCurrentStatus = "Cutie Pie",
+                EmployeeMonday = "24/7",
+                EmployeeTuesday = "24/7",
+                EmployeeWednesday = "24/7",
+                EmployeeThursday = "24/7",
+                EmployeeFriday = "24/7"
+            });
             ScheduleData.Add(new SchedData()
             {
                 EmployeeName = "Sara Teran",
@@ -225,15 +243,6 @@ namespace Whiteboard
         {
             this.WindowState = WindowState.Minimized;
         }
-
-        // Logic regarding property updates
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-
 
 
 

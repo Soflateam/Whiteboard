@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Configuration;
 using System.Data;
+using System.ServiceModel;
 using System.Windows;
 
 namespace Whiteboard
@@ -10,6 +11,7 @@ namespace Whiteboard
 
     }
 
+    // Define collections
     public class SchedData : INotifyPropertyChanged
     {
         private string _employeeName;
@@ -78,5 +80,8 @@ namespace Whiteboard
         public string EventDate { get; set; }
         public string EventDescription { get; set; }
     }
+
+
+
 
 }

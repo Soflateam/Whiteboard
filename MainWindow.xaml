@@ -44,7 +44,7 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             
-            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+            <ScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Disabled">
                 <ItemsControl ItemsSource="{Binding ScheduleData}">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
@@ -54,8 +54,8 @@
 
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <!--First Panel-->
-                            <StackPanel Margin="0,0,5,0" Width="250" Height="400">
+                            <!--Panel Generation-->
+                            <StackPanel Margin="0,0,5,0" Width="225" Height="400">
                                 <!--Name-->
                                 <TextBlock Text="{Binding EmployeeName}" Margin="15,15,15,15" Style="{StaticResource EmployeeNameHeader}"/>
 
@@ -127,7 +127,7 @@
 
         <!--Bottom Grid Row for Main Content-->
         <Grid Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2">
-            <Border Background="DarkGreen" Width="550" HorizontalAlignment="Left" CornerRadius="25" Margin="0,10,0,10">
+            <Border Background="DarkGreen" Width="550" HorizontalAlignment="Left" CornerRadius="25" Margin="20,10,0,15">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="30"/>
@@ -170,7 +170,7 @@
 
                 </Grid>
             </Border>
-            <Border Background="DarkBlue" Width="550" HorizontalAlignment="Center" CornerRadius="25" Margin="0,10,20,10">
+            <Border Background="DarkBlue" Width="550" HorizontalAlignment="Center" CornerRadius="25" Margin="0,10,20,15">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="30"/>
@@ -203,7 +203,7 @@
 
                 </Grid>
             </Border>
-            <Border Background="DarkGreen" Width="550" HorizontalAlignment="Right" CornerRadius="25" Margin="0,10,20,10">
+            <Border Background="DarkGreen" Width="550" HorizontalAlignment="Right" CornerRadius="25" Margin="0,10,20,15">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="30"/>
