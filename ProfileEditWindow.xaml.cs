@@ -257,7 +257,7 @@ namespace Whiteboard
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            var saveResponse = MessageBox.Show("Save Changes?", "Save", MessageBoxButton.YesNo, MessageBoxImage.Information);
+            var saveResponse = MessageBox.Show("Do you want to save changes to the employee?", "Save", MessageBoxButton.YesNo, MessageBoxImage.Information);
             if (saveResponse == MessageBoxResult.Yes)
             {
 
@@ -266,7 +266,6 @@ namespace Whiteboard
                 {
                     // Save changes from TextBox fields directly to the selected employee's properties
                     SelectedEmployee.EmployeeName = NameTextBox.Text;
-                    SelectedEmployee.EmployeePhoto = ProfilePictureTextBox.Text;
                     SelectedEmployee.EmployeeMondayStart = MondayStartTextBox.Text;
                     SelectedEmployee.EmployeeMondayEnd = MondayEndTextBox.Text;
                     SelectedEmployee.EmployeeTuesdayStart = TuesdayStartTextBox.Text;
@@ -289,14 +288,13 @@ namespace Whiteboard
                 }
                 else
                 {
+
                 }
             }
         }
 
-
         public void DiscardButton_Click(object sender, RoutedEventArgs e)
         {
-
             MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
             ClearEmployeeEditForm();
             this.Close();
@@ -306,7 +304,6 @@ namespace Whiteboard
         {
             // Clear all textboxes
             NameTextBox.Clear();
-            ProfilePictureTextBox.Clear();
             MondayStartTextBox.Clear();
             MondayEndTextBox.Clear();
             TuesdayStartTextBox.Clear();
@@ -324,6 +321,70 @@ namespace Whiteboard
             ((App)Application.Current).LoadDataFromFile(EmployeeDataGrid.ItemsSource as ObservableCollection<SchedData>);
         }
 
+        private void AddButton_Click(object sender, RoutedEventArgs e)
+        {
+
+            //Prepare form for new data
+            ClearEmployeeEditForm();
+
+            // Create a new employee (SchedData) with data from the TextBoxes
+            var newEmployee = new SchedData
+            {
+                EmployeeName = NameTextBox.Text,
+                EmployeePhoto = "pack://application:,,,/Assets/Images/EmployeePlaceholderPhoto.jpg",
+                EmployeeMondayStart = MondayStartTextBox.Text,
+                EmployeeMondayEnd = MondayEndTextBox.Text,
+                EmployeeTuesdayStart = TuesdayStartTextBox.Text,
+                EmployeeTuesdayEnd = TuesdayEndTextBox.Text,
+                EmployeeWednesdayStart = WednesdayStartTextBox.Text,
+                EmployeeWednesdayEnd = WednesdayEndTextBox.Text,
+                EmployeeThursdayStart = ThursdayStartTextBox.Text,
+                EmployeeThursdayEnd = ThursdayEndTextBox.Text,
+                EmployeeFridayStart = FridayStartTextBox.Text,
+                EmployeeFridayEnd = FridayEndTextBox.Text
+            };
+
+            // Add the new employee to the ObservableCollection
+            ((ObservableCollection<SchedData>)EmployeeDataGrid.ItemsSource).Add(newEmployee);
+
+            // Save the changes to file
+            ((App)Application.Current).SaveDataToFile(EmployeeDataGrid.ItemsSource as ObservableCollection<SchedData>);
+
+            // Optionally, refresh the DataGrid if needed
+            EmployeeDataGrid.Items.Refresh();
+
+            // Auto-select the newly added employee
+            EmployeeDataGrid.SelectedItem = newEmployee;
+        }
+
+        private void RemoveButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Ensure that an employee is selected
+            if (SelectedEmployee == null)
+            {
+                MessageBox.Show("Please select an employee to remove.", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            // Confirm removal
+            var confirmResponse = MessageBox.Show($"Are you sure you want to remove {SelectedEmployee.EmployeeName}?",
+                                                   "Remove Employee", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+            if (confirmResponse == MessageBoxResult.Yes)
+            {
+                // Remove the selected employee from the ObservableCollection
+                ((ObservableCollection<SchedData>)EmployeeDataGrid.ItemsSource).Remove(SelectedEmployee);
+
+                // Optionally, refresh the DataGrid if needed
+                EmployeeDataGrid.Items.Refresh();
+
+                // Save the changes to file
+                ((App)Application.Current).SaveDataToFile(EmployeeDataGrid.ItemsSource as ObservableCollection<SchedData>);
+
+                // Clear the form
+                ClearEmployeeEditForm();
+            }
+        }
 
     }
 }
