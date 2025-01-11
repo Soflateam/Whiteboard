@@ -172,7 +172,6 @@ namespace Whiteboard
             set { _employeeFridayEnd = value; OnPropertyChanged(nameof(EmployeeFridayEnd)); }
         }
 
-
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string propertyName)
         {
