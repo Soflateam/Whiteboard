@@ -4,11 +4,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Whiteboard"
         xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
-        Title="MainWindow" Height="1040" Width="1900" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True" Background="DarkGray">
+        Title="MainWindow" Height="1080" Width="1920" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True"
+        MouseDown="Border_MouseDown" MouseLeftButtonDown="Border_MouseLeftButtonDown" Background="#778899">
     <Window.Resources>
 
     </Window.Resources>
-
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -23,7 +24,7 @@
         </Grid.RowDefinitions>
 
         <!--Top Border-->
-        <Border Background="DarkGray" MouseDown="Border_MouseDown" MouseLeftButtonDown="Border_MouseLeftButtonDown" Grid.ColumnSpan="3" Grid.RowSpan="1">
+        <Border Background="#323a45" Grid.ColumnSpan="3" Grid.RowSpan="1">
             <Grid Grid.Row="0" Grid.Column="2">
                 <Button Style="{StaticResource CloseButton}" Margin="0,1,15,0" HorizontalAlignment="Right"
                                 Click="CloseButton_Click">
@@ -44,7 +45,7 @@
         </Border>
 
         <!--Top Grid Row for Main Content-->
-        <Grid Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2">
+        <Grid Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2" Margin="20,5,20,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="25*"/>
                 <RowDefinition Height="*"/>
@@ -60,8 +61,9 @@
 
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <!--Panel Generation-->
-                            <StackPanel Margin="0,0,5,0" Width="225" Height="400">
+                            <Border Background="#323a45" CornerRadius="25" Margin="15,15,15,15">
+                                <!--Panel Generation-->
+                                <StackPanel Margin="0,0,5,0" Width="200" Height="375">
                                 <!--Name-->
                                 <TextBlock Text="{Binding EmployeeName}" Margin="15,15,15,15" Style="{StaticResource EmployeeNameHeader}"/>
 
@@ -75,25 +77,25 @@
 
                                 <!--Day Schedules-->
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5,5,5,5">
-                                    <Grid>
+                                        <Grid Background="#3f6184">
                                         <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="100"/>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="50"/>
+                                            <ColumnDefinition Width="50"/>
+                                            <ColumnDefinition Width="50"/>
                                         </Grid.ColumnDefinitions>
-                                        <TextBlock Text="Monday" Grid.Column="0" Style="{StaticResource DayScheduleHeaders}"/>
-                                        <TextBlock Text="{Binding EmployeeMondayStart}" Grid.Column="1" Style="{StaticResource DayScheduleTimes}"/>
-                                        <TextBlock Text="{Binding EmployeeMondayEnd}" Grid.Column="2" Style="{StaticResource DayScheduleTimes}"/>
-                                    </Grid>
+                                            <TextBlock Text="Mon" Grid.Column="0" Style="{StaticResource DayScheduleHeaders}"/>
+                                            <TextBlock Text="{Binding EmployeeMondayStart}" Grid.Column="1" Style="{StaticResource DayScheduleTimes}"/>
+                                            <TextBlock Text="{Binding EmployeeMondayEnd}" Grid.Column="2" Style="{StaticResource DayScheduleTimes}"/>
+                                        </Grid>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5,5,5,5">
                                     <Grid>
                                         <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="100"/>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="50"/>
+                                            <ColumnDefinition Width="50"/>
+                                            <ColumnDefinition Width="50"/>
                                         </Grid.ColumnDefinitions>
-                                        <TextBlock Text="Tuesday" Grid.Column="0" Style="{StaticResource DayScheduleHeaders}"/>
+                                        <TextBlock Text="Tues" Grid.Column="0" Style="{StaticResource DayScheduleHeaders}"/>
                                         <TextBlock Text="{Binding EmployeeTuesdayStart}" Grid.Column="1" Style="{StaticResource DayScheduleTimes}"/>
                                         <TextBlock Text="{Binding EmployeeTuesdayEnd}" Grid.Column="2" Style="{StaticResource DayScheduleTimes}"/>
                                     </Grid>
@@ -101,11 +103,11 @@
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5,5,5,5">
                                     <Grid>
                                         <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="100"/>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="50"/>
+                                            <ColumnDefinition Width="50"/>
+                                            <ColumnDefinition Width="50"/>
                                         </Grid.ColumnDefinitions>
-                                        <TextBlock Text="Wednesday" Grid.Column="0" Style="{StaticResource DayScheduleHeaders}"/>
+                                        <TextBlock Text="Wed" Grid.Column="0" Style="{StaticResource DayScheduleHeaders}"/>
                                         <TextBlock Text="{Binding EmployeeWednesdayStart}" Grid.Column="1" Style="{StaticResource DayScheduleTimes}"/>
                                         <TextBlock Text="{Binding EmployeeWednesdayEnd}" Grid.Column="2" Style="{StaticResource DayScheduleTimes}"/>
                                     </Grid>
@@ -113,11 +115,11 @@
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5,5,5,5">
                                     <Grid>
                                         <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="100"/>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="50"/>
+                                            <ColumnDefinition Width="50"/>
+                                            <ColumnDefinition Width="50"/>
                                         </Grid.ColumnDefinitions>
-                                        <TextBlock Text="Thursday" Grid.Column="0" Style="{StaticResource DayScheduleHeaders}"/>
+                                        <TextBlock Text="Thurs" Grid.Column="0" Style="{StaticResource DayScheduleHeaders}"/>
                                         <TextBlock Text="{Binding EmployeeThursdayStart}" Grid.Column="1" Style="{StaticResource DayScheduleTimes}"/>
                                         <TextBlock Text="{Binding EmployeeThursdayEnd}" Grid.Column="2" Style="{StaticResource DayScheduleTimes}"/>
                                     </Grid>
@@ -125,16 +127,18 @@
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5,5,5,5">
                                     <Grid>
                                         <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="100"/>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="50"/>
+                                            <ColumnDefinition Width="50"/>
+                                            <ColumnDefinition Width="50"/>
                                         </Grid.ColumnDefinitions>
-                                        <TextBlock Text="Friday" Grid.Column="0" Style="{StaticResource DayScheduleHeaders}"/>
+                                        <TextBlock Text="Fri" Grid.Column="0" Style="{StaticResource DayScheduleHeaders}"/>
                                         <TextBlock Text="{Binding EmployeeFridayStart}" Grid.Column="1" Style="{StaticResource DayScheduleTimes}"/>
                                         <TextBlock Text="{Binding EmployeeFridayEnd}" Grid.Column="2" Style="{StaticResource DayScheduleTimes}"/>
                                     </Grid>
+
                                 </StackPanel>
                             </StackPanel>
+                            </Border>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
@@ -142,8 +146,8 @@
         </Grid>
 
         <!--Bottom Grid Row for Main Content-->
-        <Grid Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2">
-            <Border Background="DarkGreen" Width="550" HorizontalAlignment="Left" CornerRadius="25" Margin="20,10,0,15">
+        <Grid Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Background="#323a45" Height="225">
+            <Border Background="#5faeb6" Width="550" HorizontalAlignment="Left" CornerRadius="25" Margin="20,10,0,15">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="30"/>
@@ -186,7 +190,7 @@
 
                 </Grid>
             </Border>
-            <Border Background="DarkBlue" Width="550" HorizontalAlignment="Center" CornerRadius="25" Margin="0,10,20,15">
+            <Border Background="#3f6184" Width="550" HorizontalAlignment="Center" CornerRadius="25" Margin="0,10,20,15">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="30"/>
@@ -219,7 +223,7 @@
 
                 </Grid>
             </Border>
-            <Border Background="DarkGreen" Width="550" HorizontalAlignment="Right" CornerRadius="25" Margin="0,10,20,15">
+            <Border Background="#5faeb6" Width="550" HorizontalAlignment="Right" CornerRadius="25" Margin="0,10,20,15">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="30"/>

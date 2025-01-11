@@ -34,6 +34,7 @@ namespace Whiteboard
             var app = (App)Application.Current;
             app.LoadDataFromFile(ScheduleData);
 
+            this.WindowState = WindowState.Maximized;
         }
 
         // Core functions such as top buttons and drag/minimize/close functionality
