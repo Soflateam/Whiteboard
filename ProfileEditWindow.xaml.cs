@@ -32,13 +32,12 @@ namespace Whiteboard
         }
 
         // Main Window Constructor
-        public ProfileEditWindow(ObservableCollection<SchedData> scheduleData, SchedData selectedEmployee)
+        public ProfileEditWindow(ObservableCollection<SchedData> scheduleData)
         {
             InitializeComponent();
 
             // Set DataContext to this window
 
-            this.SelectedEmployee = selectedEmployee;
             this.DataContext = this;
             EmployeeDataGrid.ItemsSource = scheduleData;
         }
@@ -83,10 +82,6 @@ namespace Whiteboard
                     IsMaximized = true;
                 }
             }
-        }
-        private void CloseButton_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
         }
 
         private void UploadPictureButton_Click(object sender, RoutedEventArgs e)

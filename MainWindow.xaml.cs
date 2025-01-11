@@ -79,8 +79,8 @@ namespace Whiteboard
 
         private void ProfileEditButton_Click(object sender, RoutedEventArgs e)
         {
-            var selectedEmployee = ScheduleData.First();
-            ProfileEditWindow profileWindow = new ProfileEditWindow(ScheduleData, selectedEmployee);
+
+            ProfileEditWindow profileWindow = new ProfileEditWindow(ScheduleData);
             profileWindow.Show();
         }
     }
