@@ -54,10 +54,6 @@
                     <TextBox x:Name="NameTextBox" Margin="2" Width="125"
                                Text="{Binding SelectedEmployee.EmployeeName}"/>
 
-                    <TextBlock Text="Picture Location" Margin="2" HorizontalAlignment="Center"/>
-                    <TextBox x:Name="ProfilePictureTextBox" Margin="2" Width="125"
-                               Text="{Binding SelectedEmployee.EmployeePhoto}"/>
-
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                         <TextBlock Text="Monday:" Margin="2" HorizontalAlignment="Center"/>
                         <TextBox x:Name="MondayStartTextBox" Margin="2" Width="50" HorizontalAlignment="Left"
@@ -101,6 +97,12 @@
                     </Button>
                     <Button Width="150" Height="20" Click="SaveButton_Click">
                         <TextBlock Text="Save Changes" HorizontalAlignment="Center"/>
+                    </Button>
+                    <Button Width="150" Height="20" Click="AddButton_Click">
+                        <TextBlock Text="Add New" HorizontalAlignment="Center"/>
+                    </Button>
+                    <Button Width="150" Height="20" Click="RemoveButton_Click">
+                        <TextBlock Text="Remove Employee" HorizontalAlignment="Center"/>
                     </Button>
 
                 </StackPanel>
