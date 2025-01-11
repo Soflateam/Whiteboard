@@ -1,7 +1,12 @@
-﻿using System.Collections.ObjectModel;
+﻿using Microsoft.Win32;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
+using System.Linq;
 using System.Text;
-using System.ServiceModel;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -9,31 +14,40 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Whiteboard
 {
-    public partial class MainWindow : Window, INotifyPropertyChanged
+    public partial class ProfileEditWindow : Window, INotifyPropertyChanged
     {
+        // Property Changed logic
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public ObservableCollection<SchedData> ScheduleData { get; set; }
-
-
-        public MainWindow()
+        // Main Window Constructor
+        public ProfileEditWindow(ObservableCollection<SchedData> scheduleData, SchedData selectedEmployee)
         {
             InitializeComponent();
 
-            DataContext = this;
-            ScheduleData = new ObservableCollection<SchedData>();
-            var app = (App)Application.Current;
-            app.LoadDataFromFile(ScheduleData);
+            // Set DataContext to this window
+            
+            this.SelectedEmployee = selectedEmployee;
+            this.DataContext = this;
+            EmployeeDataGrid.ItemsSource = scheduleData;
+        }
 
+        private SchedData _selectedEmployee;
+        public SchedData SelectedEmployee
+        {
+            get => _selectedEmployee;
+            set
+            {
+                _selectedEmployee = value;
+                OnPropertyChanged(nameof(SelectedEmployee));
+            }
         }
 
         // Core functions such as top buttons and drag/minimize/close functionality
@@ -65,23 +79,12 @@ namespace Whiteboard
                     IsMaximized = true;
                 }
             }
-                }
-        
+        }
+
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
 
-        private void MinimizeButton_Click(object sender, RoutedEventArgs e)
-        {
-            this.WindowState = WindowState.Minimized;
-        }
-
-        private void ProfileEditButton_Click(object sender, RoutedEventArgs e)
-        {
-            var selectedEmployee = ScheduleData.First();
-            ProfileEditWindow profileWindow = new ProfileEditWindow(ScheduleData, selectedEmployee);
-            profileWindow.Show();
-        }
     }
 }
