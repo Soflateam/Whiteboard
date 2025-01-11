@@ -34,6 +34,12 @@
                                 Click="MinimizeButton_Click">
                     <Icon:PackIconMaterial Kind="WindowMinimize"/>
                 </Button>
+                
+                <Button x:Name="MenuButton" Style="{StaticResource TopButton}" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Bottom"
+                                    Click="ProfileEditButton_Click" Height="30">
+                    <Icon:PackIconMaterial Kind="Menu"/>
+                </Button>
+
             </Grid>
         </Border>
 
@@ -43,7 +49,7 @@
                 <RowDefinition Height="25*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            
+
             <ScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Disabled">
                 <ItemsControl ItemsSource="{Binding ScheduleData}">
                     <ItemsControl.ItemsPanel>
@@ -75,7 +81,7 @@
                                             <ColumnDefinition Width="*"/>
                                         </Grid.ColumnDefinitions>
                                         <TextBlock Text="Monday" Grid.Column="0" Style="{StaticResource DayScheduleHeaders}"/>
-                                        <TextBlock Text="{Binding EmployeeMonday}" Grid.Column="1" Style="{StaticResource DayScheduleTimes}"/>
+                                        <TextBlock Text="{Binding EmployeeMondayStart}" Grid.Column="1" Style="{StaticResource DayScheduleTimes}"/>
                                     </Grid>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5,5,5,5">
@@ -85,7 +91,7 @@
                                             <ColumnDefinition Width="*"/>
                                         </Grid.ColumnDefinitions>
                                         <TextBlock Text="Tuesday" Grid.Column="0" Style="{StaticResource DayScheduleHeaders}"/>
-                                        <TextBlock Text="{Binding EmployeeTuesday}" Grid.Column="1" Style="{StaticResource DayScheduleTimes}"/>
+                                        <TextBlock Text="{Binding EmployeeTuesdayStart}" Grid.Column="1" Style="{StaticResource DayScheduleTimes}"/>
                                     </Grid>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5,5,5,5">
@@ -95,7 +101,7 @@
                                             <ColumnDefinition Width="*"/>
                                         </Grid.ColumnDefinitions>
                                         <TextBlock Text="Wednesday" Grid.Column="0" Style="{StaticResource DayScheduleHeaders}"/>
-                                        <TextBlock Text="{Binding EmployeeWednesday}" Grid.Column="1" Style="{StaticResource DayScheduleTimes}"/>
+                                        <TextBlock Text="{Binding EmployeeWednesdayStart}" Grid.Column="1" Style="{StaticResource DayScheduleTimes}"/>
                                     </Grid>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5,5,5,5">
@@ -105,7 +111,7 @@
                                             <ColumnDefinition Width="*"/>
                                         </Grid.ColumnDefinitions>
                                         <TextBlock Text="Thursday" Grid.Column="0" Style="{StaticResource DayScheduleHeaders}"/>
-                                        <TextBlock Text="{Binding EmployeeThursday}" Grid.Column="1" Style="{StaticResource DayScheduleTimes}"/>
+                                        <TextBlock Text="{Binding EmployeeThursdayStart}" Grid.Column="1" Style="{StaticResource DayScheduleTimes}"/>
                                     </Grid>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5,5,5,5">
@@ -115,7 +121,7 @@
                                             <ColumnDefinition Width="*"/>
                                         </Grid.ColumnDefinitions>
                                         <TextBlock Text="Friday" Grid.Column="0" Style="{StaticResource DayScheduleHeaders}"/>
-                                        <TextBlock Text="{Binding EmployeeFriday}" Grid.Column="1" Style="{StaticResource DayScheduleTimes}"/>
+                                        <TextBlock Text="{Binding EmployeeFridayStart}" Grid.Column="1" Style="{StaticResource DayScheduleTimes}"/>
                                     </Grid>
                                 </StackPanel>
                             </StackPanel>
@@ -187,7 +193,7 @@
                     <StackPanel Grid.RowSpan="5"  Grid.ColumnSpan="2"  >
                         <TextBlock Text="WFL Service Desk Phone: (360) 619-7600" Grid.Column="0" Grid.Row="1" FontSize="14" FontWeight="SemiBold" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"
                                Margin="20,45,20,5" TextWrapping="Wrap"/>
-                    <TextBlock Text="WFL Service Desk: WFLHD.ServiceDesk@dot.gov" Grid.Column="0" Grid.Row="1" FontSize="14" FontWeight="SemiBold" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"
+                        <TextBlock Text="WFL Service Desk: WFLHD.ServiceDesk@dot.gov" Grid.Column="0" Grid.Row="1" FontSize="14" FontWeight="SemiBold" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"
                                Margin="20,5,20,5" TextWrapping="Wrap"/>
                         <TextBlock Text="OCIO Email: OCIOClientCenter@dot.gov" Grid.Column="0" Grid.Row="1" FontSize="14" FontWeight="SemiBold" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"
                                Margin="20,5,20,5" TextWrapping="Wrap"/>
@@ -219,7 +225,7 @@
                     <Icon:PackIconMaterial Kind="WifiAlert" Background="Transparent" Foreground="White" Width="35" Height="35" HorizontalAlignment="Left" VerticalAlignment="Center"
                             Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1" Grid.RowSpan="2" Margin="75,0,0,0"/>
                     <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="1" Grid.RowSpan="2" >
-                    <TextBlock Text="Download" FontSize="18" FontWeight="SemiBold" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top"
+                        <TextBlock Text="Download" FontSize="18" FontWeight="SemiBold" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top"
                                Margin="25,0,15,5" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="1"/>
                         <TextBlock Text="25" FontSize="18" FontWeight="SemiBold" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Top"
                           Margin="25,0,15,5" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="1"/>
@@ -242,6 +248,6 @@
                 </Grid>
             </Border>
         </Grid>
-        
+
     </Grid>
 </Window>
