@@ -12,6 +12,7 @@
     <None Remove=".gitattributes" />
     <None Remove=".gitignore" />
     <None Remove="Assets\Images\EmployeePlaceholderPhoto.jpg" />
+    <None Remove="Assets\Images\US_DOT_Triskelion.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -22,6 +23,9 @@
 
   <ItemGroup>
     <Resource Include="Assets\Images\EmployeePlaceholderPhoto.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Images\US_DOT_Triskelion.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
