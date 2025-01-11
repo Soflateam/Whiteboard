@@ -79,39 +79,47 @@
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="100"/>
                                             <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
                                         </Grid.ColumnDefinitions>
                                         <TextBlock Text="Monday" Grid.Column="0" Style="{StaticResource DayScheduleHeaders}"/>
                                         <TextBlock Text="{Binding EmployeeMondayStart}" Grid.Column="1" Style="{StaticResource DayScheduleTimes}"/>
+                                        <TextBlock Text="{Binding EmployeeMondayEnd}" Grid.Column="2" Style="{StaticResource DayScheduleTimes}"/>
                                     </Grid>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5,5,5,5">
                                     <Grid>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="100"/>
+                                            <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="*"/>
                                         </Grid.ColumnDefinitions>
                                         <TextBlock Text="Tuesday" Grid.Column="0" Style="{StaticResource DayScheduleHeaders}"/>
                                         <TextBlock Text="{Binding EmployeeTuesdayStart}" Grid.Column="1" Style="{StaticResource DayScheduleTimes}"/>
+                                        <TextBlock Text="{Binding EmployeeTuesdayEnd}" Grid.Column="2" Style="{StaticResource DayScheduleTimes}"/>
                                     </Grid>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5,5,5,5">
                                     <Grid>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="100"/>
+                                            <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="*"/>
                                         </Grid.ColumnDefinitions>
                                         <TextBlock Text="Wednesday" Grid.Column="0" Style="{StaticResource DayScheduleHeaders}"/>
                                         <TextBlock Text="{Binding EmployeeWednesdayStart}" Grid.Column="1" Style="{StaticResource DayScheduleTimes}"/>
+                                        <TextBlock Text="{Binding EmployeeWednesdayEnd}" Grid.Column="2" Style="{StaticResource DayScheduleTimes}"/>
                                     </Grid>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5,5,5,5">
                                     <Grid>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="100"/>
+                                            <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="*"/>
                                         </Grid.ColumnDefinitions>
                                         <TextBlock Text="Thursday" Grid.Column="0" Style="{StaticResource DayScheduleHeaders}"/>
                                         <TextBlock Text="{Binding EmployeeThursdayStart}" Grid.Column="1" Style="{StaticResource DayScheduleTimes}"/>
+                                        <TextBlock Text="{Binding EmployeeThursdayEnd}" Grid.Column="2" Style="{StaticResource DayScheduleTimes}"/>
                                     </Grid>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5,5,5,5">
@@ -119,9 +127,11 @@
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="100"/>
                                             <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
                                         </Grid.ColumnDefinitions>
                                         <TextBlock Text="Friday" Grid.Column="0" Style="{StaticResource DayScheduleHeaders}"/>
                                         <TextBlock Text="{Binding EmployeeFridayStart}" Grid.Column="1" Style="{StaticResource DayScheduleTimes}"/>
+                                        <TextBlock Text="{Binding EmployeeFridayEnd}" Grid.Column="2" Style="{StaticResource DayScheduleTimes}"/>
                                     </Grid>
                                 </StackPanel>
                             </StackPanel>

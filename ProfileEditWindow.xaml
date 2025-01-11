@@ -4,7 +4,7 @@
         xmlns:local="clr-namespace:Whiteboard"
         xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks" 
         Title="ProfileEditWindow" Height="600" Width="800" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True"
-        Background="DarkGray">
+        Background="White">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -35,7 +35,10 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock Text="Profile Edit" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="1"/>
-
+                <Button Style="{StaticResource TopButton}" Margin="0,1,15,0" HorizontalAlignment="Right" Grid.Row="0" Grid.Column="1"
+                                Click="DiscardButton_Click">
+                    <Icon:PackIconMaterial Kind="CloseThick"/>
+                </Button>
                 <DataGrid x:Name="EmployeeDataGrid" ItemsSource="{Binding ScheduleData}" SelectedItem="{Binding SelectedEmployee}" AutoGenerateColumns="False"
                       IsReadOnly="True">
                     <DataGrid.Columns>
@@ -45,33 +48,61 @@
 
                 <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Vertical" Margin="10">
 
+                    <Image x:Name="EmployeePhoto" Source="{Binding SelectedEmployee.EmployeePhoto}" Margin="0,0,0,0" Style="{StaticResource EmployeePhotoFrame}"/>
+
                     <TextBlock Text="Name:" Margin="2" HorizontalAlignment="Center"/>
                     <TextBox x:Name="NameTextBox" Margin="2" Width="125"
-                             Text="{Binding SelectedEmployee.EmployeeName}"/>
-
-                    <TextBlock Text="Monday:" Margin="2" HorizontalAlignment="Center"/>
-                    <TextBox x:Name="MondayTextBox" Margin="2" Width="125"
-                             Text="{Binding SelectedEmployee.EmployeeMondayStart}"/>
-
-                    <TextBlock Text="Tuesday:" Margin="2" HorizontalAlignment="Center"/>
-                    <TextBox x:Name="TuesdayTextBox" Margin="2" Width="125"
-                             Text="{Binding SelectedEmployee.EmployeeTuesdayStart}"/>
-
-                    <TextBlock Text="Wednesday:" Margin="2" HorizontalAlignment="Center"/>
-                    <TextBox x:Name="WednesdayTextBox" Margin="2" Width="125"
-                             Text="{Binding SelectedEmployee.EmployeeWednesdayStart}"/>
-
-                    <TextBlock Text="Thursday:" Margin="2" HorizontalAlignment="Center"/>
-                    <TextBox x:Name="ThursdayTextBox" Margin="2" Width="125"
-                             Text="{Binding SelectedEmployee.EmployeeThursdayStart}"/>
-
-                    <TextBlock Text="Friday:" Margin="2" HorizontalAlignment="Center"/>
-                    <TextBox x:Name="FridayTextBox" Margin="2" Width="125"
-                             Text="{Binding SelectedEmployee.EmployeeFridayStart}"/>
+                               Text="{Binding SelectedEmployee.EmployeeName}"/>
 
                     <TextBlock Text="Picture Location" Margin="2" HorizontalAlignment="Center"/>
                     <TextBox x:Name="ProfilePictureTextBox" Margin="2" Width="125"
-                             Text="{Binding SelectedEmployee.EmployeePhoto}"/>
+                               Text="{Binding SelectedEmployee.EmployeePhoto}"/>
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <TextBlock Text="Monday:" Margin="2" HorizontalAlignment="Center"/>
+                        <TextBox x:Name="MondayStartTextBox" Margin="2" Width="50" HorizontalAlignment="Left"
+                                   Text="{Binding SelectedEmployee.EmployeeMondayStart}"/>
+                        <TextBox x:Name="MondayEndTextBox" Margin="2" Width="50" HorizontalAlignment="Right"
+                                   Text="{Binding SelectedEmployee.EmployeeMondayEnd}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <TextBlock Text="Tuesday:" Margin="2" HorizontalAlignment="Center"/>
+                        <TextBox x:Name="TuesdayStartTextBox" Margin="2" Width="50"
+                                   Text="{Binding SelectedEmployee.EmployeeTuesdayStart}"/>
+                        <TextBox x:Name="TuesdayEndTextBox" Margin="2" Width="50"
+                                   Text="{Binding SelectedEmployee.EmployeeTuesdayEnd}"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <TextBlock Text="Wednesday:" Margin="2" HorizontalAlignment="Center"/>
+                        <TextBox x:Name="WednesdayStartTextBox" Margin="2" Width="50"
+                                   Text="{Binding SelectedEmployee.EmployeeWednesdayStart}"/>
+                        <TextBox x:Name="WednesdayEndTextBox" Margin="2" Width="50"
+                                   Text="{Binding SelectedEmployee.EmployeeWednesdayEnd}"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <TextBlock Text="Thursday:" Margin="2" HorizontalAlignment="Center"/>
+                        <TextBox x:Name="ThursdayStartTextBox" Margin="2" Width="50"
+                                   Text="{Binding SelectedEmployee.EmployeeThursdayStart}"/>
+                        <TextBox x:Name="ThursdayEndTextBox" Margin="2" Width="50"
+                                   Text="{Binding SelectedEmployee.EmployeeThursdayEnd}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <TextBlock Text="Friday:" Margin="2" HorizontalAlignment="Center"/>
+                        <TextBox x:Name="FridayStartTextBox" Margin="2" Width="50"
+                                   Text="{Binding SelectedEmployee.EmployeeFridayStart}"/>
+                        <TextBox x:Name="FridayEndTextBox" Margin="2" Width="50"
+                                   Text="{Binding SelectedEmployee.EmployeeFridayEnd}"/>
+                    </StackPanel>
+
+                    <Button Width="150" Height="20" Click="UploadPictureButton_Click">
+                        <TextBlock Text="Upload Picture" HorizontalAlignment="Center"/>
+                    </Button>
+                    <Button Width="150" Height="20" Click="SaveButton_Click">
+                        <TextBlock Text="Save Changes" HorizontalAlignment="Center"/>
+                    </Button>
+
                 </StackPanel>
             </Grid>
         </Border>
