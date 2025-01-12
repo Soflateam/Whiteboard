@@ -26,8 +26,8 @@ namespace Whiteboard
     public partial class ProfileEditWindow : Window, INotifyPropertyChanged
     {
         // Establish Variables
-        private SchedData _selectedEmployee;
-        public SchedData SelectedEmployee
+        private SchedData? _selectedEmployee;
+        public SchedData? SelectedEmployee
         {
             get => _selectedEmployee;
             set
@@ -60,7 +60,7 @@ namespace Whiteboard
             }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler? PropertyChanged;
 
         protected void OnPropertyChanged(string propertyName)
         {
@@ -238,6 +238,12 @@ namespace Whiteboard
         // Custom Click Functions
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
+            if (SelectedEmployee == null)
+            {
+                MessageBox.Show("No employee selected.", "Cannot Save", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
             var saveResponse = MessageBox.Show("Do you want to save changes to the employee?", "Save", MessageBoxButton.YesNo, MessageBoxImage.Information);
             if (saveResponse == MessageBoxResult.Yes)
             {

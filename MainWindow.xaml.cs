@@ -21,7 +21,7 @@ namespace Whiteboard
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
         // Establish Collections and Variables
-        private DispatcherTimer _timer;
+        private DispatcherTimer? _timer;
 
         private bool _isNetworkAvailable;
         public bool IsNetworkAvailable
@@ -81,7 +81,7 @@ namespace Whiteboard
 
 
         // Property Changed logic
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler? PropertyChanged;
         protected void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
@@ -91,7 +91,7 @@ namespace Whiteboard
 
 
         // Clock logic
-        private void Timer_Tick(object sender, EventArgs e)
+        private void Timer_Tick(object? sender, EventArgs e)
         {
             // Update the TextBlock with the current time
             ClockText.Text = DateTime.Now.ToString("hh:mm:ss tt");
