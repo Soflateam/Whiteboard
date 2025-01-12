@@ -160,7 +160,7 @@
 
             <Style.Triggers>
                 <Trigger Property="IsSelected" Value="True">
-                    <Setter Property="Foreground" Value="#5faeb6"/>
+                    <Setter Property="Foreground" Value="#f99820"/>
                 </Trigger>
                 <Trigger Property="IsMouseOver" Value="True">
                     <Setter Property="Foreground" Value="#5faeb6"/>
@@ -170,7 +170,7 @@
                         <Condition Property="IsSelected" Value="true"/>
                         <Condition Property="Selector.IsSelectionActive" Value="false"/>
                     </MultiTrigger.Conditions>
-                    <Setter Property="Foreground" Value="#5faeb6"/>
+                    <Setter Property="Foreground" Value="#f99820"/>
                 </MultiTrigger>
                 <Trigger Property="IsEnabled" Value="false">
                     <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
@@ -410,7 +410,7 @@
         <Style x:Key="StatusIndicatorText" TargetType="TextBlock">
             <Setter Property="FontFamily" Value="Calibri"/>
             <Setter Property="FontSize" Value="14"/>
-            <Setter Property="Foreground" Value="#f99820"/>
+            <Setter Property="Foreground" Value="White"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
         </Style>

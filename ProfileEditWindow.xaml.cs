@@ -245,8 +245,10 @@ namespace Whiteboard
                 // Ensure that a valid employee is selected
                 if (SelectedEmployee != null)
                 {
-                    // Save changes from TextBox fields directly to the selected employee's properties
+
                     SelectedEmployee.EmployeeName = NameTextBox.Text;
+                    SelectedEmployee.EmployeeTitle = TitleTextBox.Text;
+                    SelectedEmployee.EmployeeAccountName = AccountNameTextBox.Text;
                     SelectedEmployee.EmployeeMondayStart = MondayStartTextBox.Text;
                     SelectedEmployee.EmployeeMondayEnd = MondayEndTextBox.Text;
                     SelectedEmployee.EmployeeTuesdayStart = TuesdayStartTextBox.Text;
@@ -258,15 +260,16 @@ namespace Whiteboard
                     SelectedEmployee.EmployeeFridayStart = FridayStartTextBox.Text;
                     SelectedEmployee.EmployeeFridayEnd = FridayEndTextBox.Text;
 
-                    // Notify that the property is updated
+
                     OnPropertyChanged(nameof(SelectedEmployee));
 
-                    // Refresh the DataGrid
                     EmployeeDataGrid.Items.Refresh();
 
                     ((App)Application.Current).SaveDataToFile(EmployeeDataGrid.ItemsSource as ObservableCollection<SchedData>);
 
                     MessageBox.Show("Changes Saved!\n\n You must restart the application for changes to take effect.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                    this.Close();
 
                 }
                 else
@@ -297,7 +300,7 @@ namespace Whiteboard
             FridayEndTextBox.Clear();
 
             // Reset the image to the placeholder or the original image
-            EmployeePhoto.Source = new BitmapImage(new Uri("pack://application:,,,/Assets/Images/EmployeePlaceholderPhoto.jpg"));
+            EmployeePhoto.Source = new BitmapImage(new Uri("pack://application:,,,/Assets/Images/EmployeePlaceholderPhoto.png"));
 
         }
 
@@ -318,7 +321,7 @@ namespace Whiteboard
                 var newEmployee = new SchedData
                 {
                     EmployeeName = NameTextBox.Text,
-                    EmployeePhoto = "pack://application:,,,/Assets/Images/EmployeePlaceholderPhoto.jpg",
+                    EmployeePhoto = "pack://application:,,,/Assets/Images/EmployeePlaceholderPhoto.png",
                     EmployeeMondayStart = MondayStartTextBox.Text,
                     EmployeeMondayEnd = MondayEndTextBox.Text,
                     EmployeeTuesdayStart = TuesdayStartTextBox.Text,
