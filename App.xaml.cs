@@ -10,6 +10,7 @@ using System.Linq;
 using CsvHelper.Configuration;
 using CsvHelper;
 using System.Collections.ObjectModel;
+using System.Security.RightsManagement;
 
 namespace Whiteboard
 {
@@ -82,12 +83,45 @@ namespace Whiteboard
                 Console.WriteLine($"Error: {ex.Message}");
             }
         }
-    }
 
+        public void LoadDataTableFromFile(ObservableCollection<DataBar> BottomTableCollection)
+        {
+            try
+            {
+                var baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+                var dataDirectory = Path.Combine(baseDirectory, "Data");
+                var openFilePath = Path.Combine(dataDirectory, "DataTable.csv");
+                if (!File.Exists(openFilePath))
+                {
+                    Console.WriteLine("The file does not exist.");
+                    return;
+                }
+                var configCsv = new CsvConfiguration(CultureInfo.InvariantCulture)
+                {
+                    HasHeaderRecord = true
+                };
+                using (var reader = new StreamReader(openFilePath))
+                using (var csv = new CsvReader(reader, configCsv))
+                {
+                    var datarecords = csv.GetRecords<DataBar>().ToList();
+                    BottomTableCollection.Clear();
+                    foreach (var databarrecord in datarecords)
+                    {
+                        BottomTableCollection.Add(databarrecord);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+            }
+        }
+    }
     // Define collections
     public class SchedData : INotifyPropertyChanged
     {
         private string? _employeeName;
+        private string? _employeeTitle;
         private string? _employeePhoto;
         private string? _employeeCurrentStatus;
         private string? _employeeMondayStart;
@@ -100,13 +134,18 @@ namespace Whiteboard
         private string? _employeeWednesdayEnd;
         private string? _employeeThursdayEnd;
         private string? _employeeFridayEnd;
+        private string? _employeeAccountName;
 
         public string EmployeeName
         {
             get => _employeeName;
             set { _employeeName = value; OnPropertyChanged(nameof(EmployeeName)); }
         }
-
+        public string EmployeeTitle
+        {
+            get => _employeeTitle;
+            set { _employeeTitle = value; OnPropertyChanged(nameof(EmployeeTitle)); }
+        }
         public string EmployeePhoto
         {
             get => _employeePhoto;
@@ -171,6 +210,11 @@ namespace Whiteboard
             get => _employeeFridayEnd;
             set { _employeeFridayEnd = value; OnPropertyChanged(nameof(EmployeeFridayEnd)); }
         }
+        public string EmployeeAccountName
+        {
+            get => _employeeAccountName;
+            set { _employeeAccountName = value; OnPropertyChanged(nameof(EmployeeAccountName)); }
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string propertyName)
@@ -178,11 +222,21 @@ namespace Whiteboard
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
-
-    public class EventInfo
+ 
+    public class DataBar
     {
-        public string EventDate { get; set; }
-        public string EventDescription { get; set; }
-    };
+        public string? EventDate1 { get; set; }
+        public string? EventDescription1 { get; set; }
+        public string? EventDate2 { get; set; }
+        public string? EventDescription2 { get; set; }
+        public string? EventDate3 { get; set; }
+        public string? EventDescription3 { get; set; }
+        public string? EventDate4 { get; set; }
+        public string? EventDescription4 { get; set; }
+        public string? TriviaQuestion { get; set; }
+        public string? TriviaAnswer { get; set; }
+        public string? Contact1 { get; set; }
+        public string? Contact2 { get; set; }
 
+    };
 }

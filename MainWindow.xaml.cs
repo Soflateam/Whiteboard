@@ -24,16 +24,20 @@ namespace Whiteboard
 
         public ObservableCollection<SchedData> ScheduleData { get; set; }
 
+        public ObservableCollection<DataBar> BottomDataTable { get; set; }
 
         public MainWindow()
         {
             InitializeComponent();
 
             DataContext = this;
+
             ScheduleData = new ObservableCollection<SchedData>();
+            BottomDataTable = new ObservableCollection<DataBar>();
+
             var app = (App)Application.Current;
             app.LoadDataFromFile(ScheduleData);
-
+            app.LoadDataTableFromFile(BottomDataTable);
             this.WindowState = WindowState.Maximized;
         }
 
