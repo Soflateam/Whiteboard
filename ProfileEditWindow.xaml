@@ -63,6 +63,14 @@
                     <Icon:PackIconMaterial Kind="MinusBoxOutline" HorizontalAlignment="Center" Style="{StaticResource ConfigIcons}"/>
                 </Button>
 
+                <Button Width="20" Height="20" Click="UpArrowButton_Click" Style="{StaticResource GeneralButtons}" VerticalAlignment="Top" HorizontalAlignment="Left"  Grid.Column="0" Margin="50,2,0,0" Grid.RowSpan="2">
+                    <Icon:PackIconMaterial Kind="ArrowUpBoldBoxOutline" HorizontalAlignment="Center" Style="{StaticResource ConfigIcons}"/>
+                </Button>
+
+                <Button Width="20" Height="20" Click="DownArrowButton_Click" Style="{StaticResource GeneralButtons}" VerticalAlignment="Top" HorizontalAlignment="Left"  Grid.Column="0" Margin="70,2,0,0" Grid.RowSpan="2">
+                    <Icon:PackIconMaterial Kind="ArrowDownBoldBoxOutline" HorizontalAlignment="Center" Style="{StaticResource ConfigIcons}"/>
+                </Button>
+
                 <!--Visual Seperator-->
                 <Rectangle Width=".5" Height="525" HorizontalAlignment="Left" Margin="30,40,0,73" Stroke="White" Grid.Column="1" Grid.Row="1"/>
 
