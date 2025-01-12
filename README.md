@@ -1,5 +1,6 @@
 # Whiteboard
 
+Color references:
 Aqua/Teal - #5faeb6
 Dark Gray/Blue - #323a45
 Blue - #3f6184
