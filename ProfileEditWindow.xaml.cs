@@ -290,8 +290,6 @@ namespace Whiteboard
 
         public void DiscardButton_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
-            ClearEmployeeEditForm();
             this.Close();
         }
 
@@ -313,7 +311,6 @@ namespace Whiteboard
             // Reset the image to the placeholder or the original image
             EmployeePhoto.Source = new BitmapImage(new Uri("pack://application:,,,/Assets/Images/EmployeePlaceholderPhoto.jpg"));
 
-            ((App)Application.Current).LoadDataFromFile(EmployeeDataGrid.ItemsSource as ObservableCollection<SchedData>);
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)

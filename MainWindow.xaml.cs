@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace Whiteboard
 {
@@ -21,6 +22,8 @@ namespace Whiteboard
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        private DispatcherTimer _timer;
 
         public ObservableCollection<SchedData> ScheduleData { get; set; }
 
@@ -39,6 +42,18 @@ namespace Whiteboard
             app.LoadDataFromFile(ScheduleData);
             app.LoadDataTableFromFile(BottomDataTable);
             this.WindowState = WindowState.Maximized;
+
+            // Create and set up the DispatcherTimer
+            _timer = new DispatcherTimer();
+            _timer.Interval = TimeSpan.FromSeconds(1);
+            _timer.Tick += Timer_Tick;
+            _timer.Start();
+        }
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            // Update the TextBlock with the current time
+            ClockText.Text = DateTime.Now.ToString("hh:mm:ss tt");
         }
 
         // Core functions such as top buttons and drag/minimize/close functionality
