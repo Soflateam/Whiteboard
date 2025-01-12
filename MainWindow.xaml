@@ -66,7 +66,7 @@
                                 <StackPanel Margin="0,0,5,0" Width="200" Height="375">
                                 <!--Name-->
                                 <TextBlock Text="{Binding EmployeeName}" Margin="15,15,15,10" Style="{StaticResource EmployeeNameHeader}"/>
-                                <TextBlock Text="Job Title TBD Here" Style="{StaticResource DayScheduleHeaders}" HorizontalAlignment="Center" Margin="2,5,0,5"/>
+                                <TextBlock Text="{Binding EmployeeTitle}" Style="{StaticResource DayScheduleHeaders}" HorizontalAlignment="Center" Margin="2,5,0,5"/>
 
                                 <!--Photo-->
                                 <Image Source="{Binding EmployeePhoto}" Margin="0,0,0,0" Style="{StaticResource EmployeePhotoFrame}"/>
@@ -155,123 +155,96 @@
             </ScrollViewer>
         </Grid>
 
-        <!--Bottom Grid Row for Main Content-->
+        <!--Bottom Grid Row for Misc Content-->
         <Grid Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Background="#323a45" Height="225">
             <Border Background="#5faeb6" Width="550" HorizontalAlignment="Left" CornerRadius="25" Margin="20,10,0,15">
                 <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="30"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="30"/>
-                        <ColumnDefinition Width="150"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
+                    <ItemsControl ItemsSource="{Binding BottomDataTable}" Grid.Row="1" Grid.Column="1" Height="200" Width="500">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Vertical">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="25"/>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="40"/>
+                                            <ColumnDefinition Width="100"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
 
-                    <TextBlock Text="Upcoming Events" FontSize="20" FontWeight="SemiBold" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"
-                               Margin="20,0,15,5" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"/>
+                                        <!-- Icon for the event -->
+                                        <Icon:PackIconMaterial Kind="CalendarAlert" Style="{StaticResource GeneralIcons}"
+                                                               Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2" />
 
-                    <Icon:PackIconMaterial Kind="Calendar" Background="Transparent" Foreground="White" Width="35" Height="35" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,0,0,0"
-                            Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="5"/>
+                                        <!-- Event Date and Description for each event -->
+                                        <TextBlock Text="{Binding EventDate1}" Style="{StaticResource EventCalendar}" Grid.Row="1" Grid.Column="1"/>
+                                        <TextBlock Text="{Binding EventDescription1}" Style="{StaticResource EventCalendarDescription}" Grid.Row="1" Grid.Column="2"/>
 
-                    <TextBlock Text="01/01/2025" Grid.Column="1" Grid.Row="1" FontSize="14" FontWeight="SemiBold" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"
-                               Margin="30,0,0,0"/>
-                    <TextBlock Text="10am - Training thing" Grid.Column="2" Grid.Row="1" FontSize="14" FontWeight="SemiBold" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"
-                               Margin="25,0,0,0"/>
+                                        <TextBlock Text="{Binding EventDate2}" Style="{StaticResource EventCalendar}" Grid.Row="2" Grid.Column="1"/>
+                                        <TextBlock Text="{Binding EventDescription2}" Style="{StaticResource EventCalendarDescription}" Grid.Row="2" Grid.Column="2"/>
 
-                    <TextBlock Text="03/21/2024" Grid.Column="1"  Grid.Row="2" FontSize="14" FontWeight="SemiBold" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"
-                               Margin="30,0,0,0"/>
-                    <TextBlock Text="ProjectWise Updates Yet Again" Grid.Column="2" Grid.Row="2" FontSize="14" FontWeight="SemiBold" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"
-                               Margin="25,0,0,0"/>
+                                        <TextBlock Text="{Binding EventDate3}" Style="{StaticResource EventCalendar}" Grid.Row="3" Grid.Column="1"/>
+                                        <TextBlock Text="{Binding EventDescription3}" Style="{StaticResource EventCalendarDescription}" Grid.Row="3" Grid.Column="2"/>
 
-                    <TextBlock Text="12/25/2025" Grid.Column="1"  Grid.Row="3" FontSize="14" FontWeight="SemiBold" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"
-                               Margin="30,0,0,0"/>
-                    <TextBlock Text="10-11pm - Santa delivers more clumps of coal." Grid.Column="2" Grid.Row="3" FontSize="14" FontWeight="SemiBold" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"
-                               Margin="25,0,0,0"/>
-
-                    <TextBlock Text="01/15/2042" Grid.Column="1"  Grid.Row="4" FontSize="14" FontWeight="SemiBold" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"
-                               Margin="30,0,0,0"/>
-                    <TextBlock Text="Remodel begins, possibly." Grid.Column="2" Grid.Row="4" FontSize="14" FontWeight="SemiBold" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"
-                               Margin="25,0,0,0"/>
-
+                                        <TextBlock Text="{Binding EventDate4}" Style="{StaticResource EventCalendar}" Grid.Row="4" Grid.Column="1"/>
+                                        <TextBlock Text="{Binding EventDescription4}" Style="{StaticResource EventCalendarDescription}" Grid.Row="4" Grid.Column="2"/>
+                                    </Grid>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
                 </Grid>
             </Border>
-            <Border Background="#3f6184" Width="550" HorizontalAlignment="Center" CornerRadius="25" Margin="0,10,20,15">
+
+            <Border Background="#3f6184" Width="500" Height="125" HorizontalAlignment="Center" CornerRadius="10" Margin="0,20,20,15" VerticalAlignment="Top">
                 <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="30"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <StackPanel Grid.RowSpan="5"  Grid.ColumnSpan="2"  >
-                        <TextBlock Text="WFL Service Desk Phone: (360) 619-7600" Grid.Column="0" Grid.Row="1" FontSize="14" FontWeight="SemiBold" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"
-                               Margin="20,45,20,5" TextWrapping="Wrap"/>
-                        <TextBlock Text="WFL Service Desk: WFLHD.ServiceDesk@dot.gov" Grid.Column="0" Grid.Row="1" FontSize="14" FontWeight="SemiBold" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"
-                               Margin="20,5,20,5" TextWrapping="Wrap"/>
-                        <TextBlock Text="OCIO Email: OCIOClientCenter@dot.gov" Grid.Column="0" Grid.Row="1" FontSize="14" FontWeight="SemiBold" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"
-                               Margin="20,5,20,5" TextWrapping="Wrap"/>
-                        <TextBlock Text="OCIO Client Center Phone: (800) 466-5221" Grid.Column="0" Grid.Row="1" FontSize="14" FontWeight="SemiBold" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"
-                               Margin="20,5,20,5" TextWrapping="Wrap"/>
-                    </StackPanel>
-                    <TextBlock Text="Did you Know?" FontSize="20" FontWeight="SemiBold" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"
-                               Margin="20,0,15,5" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="1"/>
-                    <TextBlock Text="Please don't forget to fill out the surveys after each ticket." Grid.Column="2" Grid.Row="1" FontSize="14" FontWeight="SemiBold" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"
-                               Margin="20,-90,20,0" Grid.RowSpan="4" TextWrapping="Wrap"/>
-                    <TextBlock Text="This gives valuable information regarding your local team!" Grid.Column="2" Grid.Row="1" FontSize="14" FontWeight="SemiBold" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"
-                               Margin="20,50,20,0" Grid.RowSpan="4" TextWrapping="Wrap"/>
-
+                    <ItemsControl Grid.Row="1" Grid.Column="1" Height="200" Width="500">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                </StackPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
                 </Grid>
             </Border>
+
+            <Border Background="#3f6184" Width="600" Height="40" HorizontalAlignment="Center" CornerRadius="10" Margin="0,10,20,15" VerticalAlignment="Bottom">
+                <Grid>
+                    <ItemsControl ItemsSource="{Binding BottomDataTable}" Grid.Row="1" Grid.Column="1" Height="200" Width="500">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Contact1}" Style="{StaticResource Contacts}"/>
+                                    <TextBlock Text="{Binding Contact2}" Style="{StaticResource Contacts}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </Grid>
+            </Border>
+            
             <Border Background="#5faeb6" Width="550" HorizontalAlignment="Right" CornerRadius="25" Margin="0,10,20,15">
                 <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="30"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="185"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Icon:PackIconMaterial Kind="WifiAlert" Background="Transparent" Foreground="White" Width="35" Height="35" HorizontalAlignment="Left" VerticalAlignment="Center"
-                            Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1" Grid.RowSpan="2" Margin="75,0,0,0"/>
-                    <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="1" Grid.RowSpan="2" >
-                        <TextBlock Text="Download" FontSize="18" FontWeight="SemiBold" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top"
-                               Margin="25,0,15,5" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="1"/>
-                        <TextBlock Text="25" FontSize="18" FontWeight="SemiBold" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Top"
-                          Margin="25,0,15,5" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="1"/>
-
-                        <TextBlock Text="Upload" FontSize="18" FontWeight="SemiBold" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Bottom"
-                               Margin="25,0,15,5" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="1"/>
-                        <TextBlock Text="25" FontSize="18" FontWeight="SemiBold" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Bottom"
-                          Margin="25,0,15,5" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="1"/>
-                    </Grid>
-
-
-                    <TextBlock Text="Trivia" FontSize="20" FontWeight="SemiBold" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"
-                           Margin="20,0,15,5" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="1"/>
-                    <TextBlock Text="Which Star Trek captain is your favorite?" FontSize="20" FontWeight="SemiBold" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top"
-                           Margin="20,10,15,5" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="1" Grid.RowSpan="3" TextWrapping="Wrap"/>
-                    <TextBlock Text="https://takethepoll.com/QER53254s" FontSize="16" FontWeight="SemiBold" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Bottom"
-                           Margin="20,0,15,5" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="1" Grid.RowSpan="3" TextWrapping="Wrap"/>
-
-
+                    <Icon:PackIconMaterial Kind="HeadQuestion" Style="{StaticResource GeneralIcons}" Margin="20,-10,0,0"/>
+                    
+                    <ItemsControl ItemsSource="{Binding BottomDataTable}" Height="200" Width="500">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding TriviaQuestion}" Style="{StaticResource TriviaHeader}"/>
+                                    <TextBlock Text="{Binding TriviaAnswer}" Style="{StaticResource TriviaAnswer}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
                 </Grid>
             </Border>
         </Grid>
-
     </Grid>
 </Window>
