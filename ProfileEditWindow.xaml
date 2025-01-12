@@ -38,8 +38,10 @@
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                                        <Icon:PackIconMaterial Kind="Account" HorizontalAlignment="Center" Margin="5,0,10,0"/>
-                                        <TextBlock Text="{Binding EmployeeName}" HorizontalAlignment="Center"/>
+                                            
+                                        <Icon:PackIconMaterial Kind="Account" HorizontalAlignment="Left" Margin="0,0,0,0" Grid.Row="0"/>
+                                        <TextBlock Text="{Binding EmployeeName}" HorizontalAlignment="Center" Grid.Row="0"  Margin="11,0,0,0"/>
+
                                     </StackPanel>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>

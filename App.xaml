@@ -294,6 +294,7 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+        
         <Style x:Key="DayScheduleHeaders" TargetType="TextBlock">
             <Setter Property="FontFamily" Value="Calibri"/>
             <Setter Property="FontSize" Value="10"/>
