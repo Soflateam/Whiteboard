@@ -24,23 +24,15 @@
         </Grid.RowDefinitions>
 
         <!--Top Border-->
-        <Border Background="#323a45" Grid.ColumnSpan="3" Grid.RowSpan="1">
+        <Border Background="#778899" Grid.ColumnSpan="3" Grid.RowSpan="1">
             <Grid Grid.Row="0" Grid.Column="2">
-                <Button Style="{StaticResource CloseButton}" Margin="0,1,15,0" HorizontalAlignment="Right"
-                                Click="CloseButton_Click">
+                <Button Style="{StaticResource CloseButton}" Margin="0,5,15,0" HorizontalAlignment="Right" Click="CloseButton_Click">
                     <Icon:PackIconMaterial Kind="CloseThick"/>
                 </Button>
 
-                <Button Style="{StaticResource TopButton}" Margin="0,5,50,0" HorizontalAlignment="Right"
-                                Click="MinimizeButton_Click">
+                <Button Style="{StaticResource TopButton}" Margin="0,10,50,0" HorizontalAlignment="Right" Click="MinimizeButton_Click">
                     <Icon:PackIconMaterial Kind="WindowMinimize"/>
                 </Button>
-                
-                <Button x:Name="MenuButton" Style="{StaticResource TopButton}" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Bottom"
-                                    Click="ProfileEditButton_Click" Height="30">
-                    <Icon:PackIconMaterial Kind="Menu"/>
-                </Button>
-
             </Grid>
         </Border>
 
@@ -50,6 +42,11 @@
                 <RowDefinition Height="25*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
+            
+            <Button x:Name="MenuButton" Style="{StaticResource TopButton}" Margin="5,0,0,0" HorizontalAlignment="Right" VerticalAlignment="Top"
+                    Click="ProfileEditButton_Click" Height="30" Panel.ZIndex="1">
+                <Icon:PackIconMaterial Kind="Cog"/>
+            </Button>
 
             <ScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Disabled">
                 <ItemsControl ItemsSource="{Binding ScheduleData}">
@@ -156,16 +153,21 @@
         </Grid>
 
         <!--Bottom Grid Row for Misc Content-->
-        <Grid Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Background="#323a45" Height="225">
+        <Grid Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Background="#323a45" Height="200">
             <Border Background="#5faeb6" Width="550" HorizontalAlignment="Left" CornerRadius="25" Margin="20,10,0,15">
                 <Grid>
-                    <ItemsControl ItemsSource="{Binding BottomDataTable}" Grid.Row="1" Grid.Column="1" Height="200" Width="500">
+                    <!-- Icon for the event -->
+                    <Icon:PackIconMaterial Kind="CalendarAlert" Style="{StaticResource GeneralIcons}" Margin="20,0,0,0"/>
+
+                    <Rectangle Width="2" Height="100" HorizontalAlignment="Left" Margin="70,0,0,0" Stroke="White"/>
+
+                    <ItemsControl ItemsSource="{Binding BottomDataTable}" Height="200" Width="500" Margin="50,5,15,0">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Vertical">
                                     <Grid>
                                         <Grid.RowDefinitions>
-                                            <RowDefinition Height="25"/>
+                                            <RowDefinition Height="10"/>
                                             <RowDefinition Height="*"/>
                                             <RowDefinition Height="*"/>
                                             <RowDefinition Height="*"/>
@@ -176,10 +178,6 @@
                                             <ColumnDefinition Width="100"/>
                                             <ColumnDefinition Width="*"/>
                                         </Grid.ColumnDefinitions>
-
-                                        <!-- Icon for the event -->
-                                        <Icon:PackIconMaterial Kind="CalendarAlert" Style="{StaticResource GeneralIcons}"
-                                                               Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2" />
 
                                         <!-- Event Date and Description for each event -->
                                         <TextBlock Text="{Binding EventDate1}" Style="{StaticResource EventCalendar}" Grid.Row="1" Grid.Column="1"/>
@@ -201,27 +199,22 @@
                 </Grid>
             </Border>
 
-            <Border Background="#3f6184" Width="500" Height="125" HorizontalAlignment="Center" CornerRadius="10" Margin="0,20,20,15" VerticalAlignment="Top">
+            <Border Background="Transparent" Width="400" Height="125" HorizontalAlignment="Center" CornerRadius="10" Margin="0,20,20,15" VerticalAlignment="Top">
                 <Grid>
-                    <ItemsControl Grid.Row="1" Grid.Column="1" Height="200" Width="500">
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                </StackPanel>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
+                    <TextBlock x:Name="ClockText" FontSize="60" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </Grid>
             </Border>
 
-            <Border Background="#3f6184" Width="600" Height="40" HorizontalAlignment="Center" CornerRadius="10" Margin="0,10,20,15" VerticalAlignment="Bottom">
+            <Border Background="#3f6184" Width="700" Height="40" HorizontalAlignment="Center" CornerRadius="10" Margin="0,10,20,15" VerticalAlignment="Bottom">
                 <Grid>
-                    <ItemsControl ItemsSource="{Binding BottomDataTable}" Grid.Row="1" Grid.Column="1" Height="200" Width="500">
+                    <ItemsControl ItemsSource="{Binding BottomDataTable}" Height="200" Width="700">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
+                                <StackPanel Orientation="Horizontal" Margin="0,0,0,0">
                                     <TextBlock Text="{Binding Contact1}" Style="{StaticResource Contacts}"/>
                                     <TextBlock Text="{Binding Contact2}" Style="{StaticResource Contacts}"/>
+                                    <Icon:PackIconMaterial Kind="WifiArrowUpDown"  Margin="15,5,0,5" Width="30" Height="30" Foreground="White"/>
+                                    <TextBlock Text="D: 850MBs | U: 20MBs" Style="{StaticResource Contacts}" Margin="0"/>
                                 </StackPanel>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
@@ -231,9 +224,11 @@
             
             <Border Background="#5faeb6" Width="550" HorizontalAlignment="Right" CornerRadius="25" Margin="0,10,20,15">
                 <Grid>
-                    <Icon:PackIconMaterial Kind="HeadQuestion" Style="{StaticResource GeneralIcons}" Margin="20,-10,0,0"/>
+                    <Icon:PackIconMaterial Kind="HeadQuestion" Style="{StaticResource GeneralIcons}" Margin="20,0,0,0"/>
                     
-                    <ItemsControl ItemsSource="{Binding BottomDataTable}" Height="200" Width="500">
+                    <Rectangle Width="2" Height="100" HorizontalAlignment="Left" Margin="70,0,0,0" Stroke="White"/>
+
+                    <ItemsControl ItemsSource="{Binding BottomDataTable}" Height="180" Width="450" Margin="75,5,15,10">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel>
