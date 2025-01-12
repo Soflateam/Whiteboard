@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:Whiteboard"
         xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks" 
-        Title="ProfileEditWindow" Height="575" Width="550" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True"
+        Title="ProfileEditWindow" Height="575" Width="570" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True"
         Background="#778899" MouseDown="Border_MouseDown">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -26,7 +26,7 @@
 
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="125"/>
+                    <ColumnDefinition Width="150"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
