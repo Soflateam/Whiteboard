@@ -29,6 +29,8 @@ namespace Whiteboard
 
         public ObservableCollection<DataBar> BottomDataTable { get; set; }
 
+        public ObservableCollection<SchedData> TempScheduleData { get; set; }
+
         public MainWindow()
         {
             InitializeComponent();
@@ -36,10 +38,12 @@ namespace Whiteboard
             DataContext = this;
 
             ScheduleData = new ObservableCollection<SchedData>();
+            TempScheduleData = new ObservableCollection<SchedData>();
             BottomDataTable = new ObservableCollection<DataBar>();
 
             var app = (App)Application.Current;
             app.LoadDataFromFile(ScheduleData);
+            app.LoadDataFromFile(TempScheduleData);
             app.LoadDataTableFromFile(BottomDataTable);
             this.WindowState = WindowState.Maximized;
 
@@ -99,9 +103,8 @@ namespace Whiteboard
 
         private void ProfileEditButton_Click(object sender, RoutedEventArgs e)
         {
-
-            ProfileEditWindow profileWindow = new ProfileEditWindow(ScheduleData);
-            profileWindow.Show();
+            var profileEditWindow = new ProfileEditWindow(TempScheduleData, this);
+            profileEditWindow.ShowDialog();
         }
     }
 }

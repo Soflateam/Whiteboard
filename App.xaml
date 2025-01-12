@@ -19,7 +19,7 @@
             <Setter Property="HeadersVisibility" Value="None"/>
             <Setter Property="VerticalScrollBarVisibility" Value="Hidden"/>
             <Setter Property="HorizontalScrollBarVisibility" Value="Hidden"/>
-            <Setter Property="Height" Value="500"/>
+            <Setter Property="Height" Value="550"/>
             <Setter Property="Width" Value="150"/>
             <Setter Property="RowDetailsVisibilityMode" Value="VisibleWhenSelected"/>
             <Setter Property="ScrollViewer.CanContentScroll" Value="true"/>

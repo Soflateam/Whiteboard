@@ -17,6 +17,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.Diagnostics;
 
 
 
@@ -31,15 +32,16 @@ namespace Whiteboard
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+
         // Main Window Constructor
-        public ProfileEditWindow(ObservableCollection<SchedData> scheduleData)
+        public ProfileEditWindow(ObservableCollection<SchedData> TempScheduleData, MainWindow mainWindow)
         {
             InitializeComponent();
 
-            // Set DataContext to this window
-
             this.DataContext = this;
-            EmployeeDataGrid.ItemsSource = scheduleData;
+
+            EmployeeDataGrid.ItemsSource = TempScheduleData;
+
         }
 
         private SchedData _selectedEmployee;
@@ -227,7 +229,6 @@ namespace Whiteboard
                 return false;
         }
 
-
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
             var saveResponse = MessageBox.Show("Do you want to save changes to the employee?", "Save", MessageBoxButton.YesNo, MessageBoxImage.Information);
@@ -257,6 +258,8 @@ namespace Whiteboard
                     EmployeeDataGrid.Items.Refresh();
 
                     ((App)Application.Current).SaveDataToFile(EmployeeDataGrid.ItemsSource as ObservableCollection<SchedData>);
+
+                    MessageBox.Show("Changes Saved!\n\n You must restart the application for changes to take effect.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
 
                 }
                 else
@@ -333,8 +336,7 @@ namespace Whiteboard
                 // Auto-select the newly added employee
                 EmployeeDataGrid.SelectedItem = newEmployee;
         }
-
-        
+                
         private void RemoveButton_Click(object sender, RoutedEventArgs e)
         {
             // Ensure that an employee is selected

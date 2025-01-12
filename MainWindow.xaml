@@ -17,7 +17,7 @@
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="25"/>
+            <RowDefinition Height="30"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="auto"/>
@@ -44,7 +44,7 @@
             </Grid.RowDefinitions>
             
             <ScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Disabled">
-                <ItemsControl ItemsSource="{Binding ScheduleData}">
+                <ItemsControl ItemsSource="{Binding ScheduleData}" x:Name="EmployeePanel" >
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <WrapPanel Orientation="Horizontal"/>
@@ -200,7 +200,7 @@
                 </Grid>
             </Border>
 
-            <Border Background="Transparent" Width="400" Height="125" HorizontalAlignment="Center" CornerRadius="10" Margin="0,20,20,15" VerticalAlignment="Top">
+            <Border Background="Transparent" Width="400" Height="125" HorizontalAlignment="Center" CornerRadius="10" Margin="0,10,20,15" VerticalAlignment="Top">
                 <Grid>
                     <TextBlock x:Name="ClockText" FontSize="60" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </Grid>
