@@ -6,8 +6,9 @@
         xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
         Title="MainWindow" Height="1080" Width="1920" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True"
         MouseDown="Border_MouseDown" MouseLeftButtonDown="Border_MouseLeftButtonDown" Background="#778899">
+    
     <Window.Resources>
-
+        <local:NetworkStatusToColorConverter x:Key="NetworkStatusToColorConverter"/>
     </Window.Resources>
     
     <Grid>
@@ -269,7 +270,7 @@
                                     <TextBlock Text="{Binding Contact1}" Style="{StaticResource Contacts}"/>
                                     <TextBlock Text="{Binding Contact2}" Style="{StaticResource Contacts}"/>
                                     <Rectangle Width="2" Height="20" Margin="2,0,0,0" Stroke="White"/>
-                                    <Icon:PackIconMaterial Kind="WifiArrowUpDown"  Margin="15,5,0,5" Width="30" Height="30" Foreground="White"/>
+                                    <Icon:PackIconMaterial Kind="WifiArrowUpDown"  Margin="15,5,0,5" Width="30" Height="30" Foreground="{Binding IsNetworkAvailable, RelativeSource={RelativeSource AncestorType=Window}, Converter={StaticResource NetworkStatusToColorConverter}}"/>
                                     <TextBlock Text="D: 850MBs  U: 20MBs" Style="{StaticResource Contacts}" Margin="0"/>
                                     
                                 </StackPanel>

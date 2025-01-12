@@ -12,19 +12,37 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using System.Globalization;
+using System.Net.NetworkInformation;
+using System.Diagnostics;
 
 namespace Whiteboard
 {
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
-        // Establish Collections
+        // Establish Collections and Variables
         private DispatcherTimer _timer;
+
+        private bool _isNetworkAvailable;
+        public bool IsNetworkAvailable
+        {
+            get => _isNetworkAvailable;
+            set
+            {
+                if (_isNetworkAvailable != value)
+                {
+                    _isNetworkAvailable = value;
+                    OnPropertyChanged(nameof(IsNetworkAvailable));
+                }
+            }
+        }
 
         public ObservableCollection<SchedData> ScheduleData { get; set; }
 
         public ObservableCollection<DataBar> BottomDataTable { get; set; }
 
         public ObservableCollection<SchedData> TempScheduleData { get; set; }
+
 
 
 
@@ -50,13 +68,37 @@ namespace Whiteboard
             _timer.Interval = TimeSpan.FromSeconds(1);
             _timer.Tick += Timer_Tick;
             _timer.Start();
+
+            // Network status check
+            IsNetworkAvailable = NetworkInterface.GetIsNetworkAvailable();
+            NetworkChange.NetworkAvailabilityChanged += (s, e) =>
+            {
+                Dispatcher.Invoke(() => IsNetworkAvailable = e.IsAvailable);
+            };
         }
 
+
+
+
+        // Property Changed logic
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+
+
+
+        // Clock logic
         private void Timer_Tick(object sender, EventArgs e)
         {
             // Update the TextBlock with the current time
             ClockText.Text = DateTime.Now.ToString("hh:mm:ss tt");
         }
+
+
+
 
         // Core functions such as top buttons and drag/minimize/close and Property Changed handler
         public void Border_MouseDown(object sender, MouseButtonEventArgs e)
@@ -87,13 +129,9 @@ namespace Whiteboard
                     IsMaximized = true;
                 }
             }
-                }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+
 
 
 
@@ -113,5 +151,27 @@ namespace Whiteboard
             var profileEditWindow = new ProfileEditWindow(TempScheduleData, this);
             profileEditWindow.ShowDialog();
         }
+
     }
+
+    public class NetworkStatusToColorConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value is bool isConnected)
+            {
+                var result = isConnected ? Brushes.LightGreen : Brushes.Red;
+                Debug.WriteLine($"Convert: {isConnected} => {result}");
+                return result;
+            }
+            Debug.WriteLine("Convert: UnsetValue returned");
+            return DependencyProperty.UnsetValue;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotSupportedException("NetworkStatusToColorConverter does not support ConvertBack.");
+        }
+    }
+
 }
