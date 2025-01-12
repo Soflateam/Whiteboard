@@ -25,25 +25,7 @@ namespace Whiteboard
 {
     public partial class ProfileEditWindow : Window, INotifyPropertyChanged
     {
-        // Property Changed logic
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-
-        // Main Window Constructor
-        public ProfileEditWindow(ObservableCollection<SchedData> TempScheduleData, MainWindow mainWindow)
-        {
-            InitializeComponent();
-
-            this.DataContext = this;
-
-            EmployeeDataGrid.ItemsSource = TempScheduleData;
-
-        }
-
+        // Establish Variables
         private SchedData _selectedEmployee;
         public SchedData SelectedEmployee
         {
@@ -55,7 +37,21 @@ namespace Whiteboard
             }
         }
 
-        // Core functions such as top buttons and drag/minimize/close functionality
+
+        // Profile Window Constructor
+        public ProfileEditWindow(ObservableCollection<SchedData> TempScheduleData, MainWindow mainWindow)
+        {
+            InitializeComponent();
+
+            this.DataContext = this;
+
+            EmployeeDataGrid.ItemsSource = TempScheduleData;
+
+        }
+
+
+
+        // Core functions such as top buttons and drag/minimize/close and Property Change logic
         public void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left)
@@ -64,6 +60,16 @@ namespace Whiteboard
             }
         }
 
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+
+
+        // Picture Related Functions
         private void UploadPictureButton_Click(object sender, RoutedEventArgs e)
         {
             if (SelectedEmployee == null)
@@ -189,7 +195,6 @@ namespace Whiteboard
             }
         }
 
-        // Function to handle rotation if needed (based on EXIF data)
         private void RotateImageIfNeeded(Bitmap image)
         {
             const int orientationId = 0x0112; // EXIF tag for orientation
@@ -212,7 +217,6 @@ namespace Whiteboard
             }
         }
 
-        // Function to check if the file is locked (in use)
         private bool IsFileLocked(string filePath)
         {
             try
@@ -229,6 +233,9 @@ namespace Whiteboard
                 return false;
         }
 
+
+
+        // Custom Click Functions
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
             var saveResponse = MessageBox.Show("Do you want to save changes to the employee?", "Save", MessageBoxButton.YesNo, MessageBoxImage.Information);
@@ -365,7 +372,6 @@ namespace Whiteboard
                 ClearEmployeeEditForm();
             }
         }
-
     }
 }
 

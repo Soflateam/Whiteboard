@@ -7,7 +7,9 @@
              xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">
     <Application.Resources>
 
+        
         <!--Data Grid Styling-->   
+        
         <Style x:Key="DataGridStyle1" TargetType="{x:Type DataGrid}">
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="Foreground" Value="Transparent"/>
@@ -73,6 +75,7 @@
                 </MultiTrigger>
             </Style.Triggers>
         </Style>
+        
         <Style x:Key="DataGridRowStyle1" TargetType="{x:Type DataGridRow}">
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="SnapsToDevicePixels" Value="true"/>
@@ -118,6 +121,7 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+        
         <Style x:Key="ColumnHeaderGripperStyle" TargetType="{x:Type Thumb}">
             <Setter Property="Width" Value="8"/>
             <Setter Property="Background" Value="Transparent"/>
@@ -130,6 +134,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        
         <Style x:Key="DataGridColumnHeaderStyle1" TargetType="{x:Type DataGridColumnHeader}">
             <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="Template">
@@ -146,6 +151,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        
         <Style x:Key="DataGridCellStyle1" TargetType="{x:Type DataGridCell}">
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="BorderBrush" Value="Transparent"/>
@@ -171,6 +177,7 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+        
         <Style x:Key="{ComponentResourceKey ResourceId=DataGridSelectAllButtonStyle, TypeInTargetAssembly={x:Type DataGrid}}" TargetType="{x:Type Button}">
             <Setter Property="Template">
                 <Setter.Value>
@@ -194,9 +201,14 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        
         <!--End Data Grid Styling-->
 
-        <!--General Styling-->
+        
+        <!--Begin General Styling-->
+        
+        <!--Buttons-->
+        
         <Style x:Key="TopButton" TargetType="Button">
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="Foreground" Value="#6e7783"/>
@@ -244,6 +256,76 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+        
+        <Style x:Key="CloseButton" TargetType="Button" BasedOn="{StaticResource TopButton}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="50">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#994203"/>
+                    <Setter Property="Foreground" Value="White"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="GeneralButtons" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Width" Value="25"/>
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="4">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#5faeb6"/>
+                    <Setter Property="Foreground" Value="White"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="RemoveButton" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Width" Value="25"/>
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="4">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#994203"/>
+                    <Setter Property="Foreground" Value="White"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        
+        <!--Text Boxes-->
 
         <Style x:Key="TextBoxes" TargetType="TextBox">
             <Setter Property="Background" Value="#ffffff"/>
@@ -276,25 +358,9 @@
             </Setter>
         </Style>
 
-        <Style x:Key="CloseButton" TargetType="Button" BasedOn="{StaticResource TopButton}">
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}" CornerRadius="50">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
 
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#994203"/>
-                    <Setter Property="Foreground" Value="White"/>
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-        
+        <!--Text Blocks-->
+
         <Style x:Key="DayScheduleHeaders" TargetType="TextBlock">
             <Setter Property="FontFamily" Value="Calibri"/>
             <Setter Property="FontSize" Value="10"/>
@@ -349,14 +415,6 @@
             <Setter Property="VerticalAlignment" Value="Center"/>
         </Style>
 
-        <Style x:Key="EmployeePhotoFrame" TargetType="Image">
-            <Setter Property="Opacity" Value="1"/>
-            <Setter Property="HorizontalAlignment" Value="Center"/>
-            <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="Width" Value="150"/>
-            <Setter Property="Height" Value="150" />
-        </Style>
-
         <Style x:Key="EventCalendar" TargetType="TextBlock">
             <Setter Property="FontFamily" Value="Calibri"/>
             <Setter Property="FontSize" Value="18"/>
@@ -409,6 +467,17 @@
             <Setter Property="Margin" Value="10,10,10,10"/>
         </Style>
 
+        
+        <!--Images and Icons-->
+        
+        <Style x:Key="EmployeePhotoFrame" TargetType="Image">
+            <Setter Property="Opacity" Value="1"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Width" Value="150"/>
+            <Setter Property="Height" Value="150" />
+        </Style>
+
         <Style x:Key="GeneralIcons" TargetType="Icon:PackIconMaterial">
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="Foreground" Value="White"/>
@@ -417,54 +486,6 @@
             <Setter Property="HorizontalAlignment" Value="Left"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="Margin" Value="5,35,0,0"/>
-        </Style>
-
-        <Style x:Key="GeneralButtons" TargetType="Button">
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="Width" Value="25"/>
-            <Setter Property="Height" Value="25"/>
-            <Setter Property="HorizontalAlignment" Value="Center"/>
-            <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}" CornerRadius="4">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#5faeb6"/>
-                    <Setter Property="Foreground" Value="White"/>
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-
-        <Style x:Key="RemoveButton" TargetType="Button">
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="Width" Value="25"/>
-            <Setter Property="Height" Value="25"/>
-            <Setter Property="HorizontalAlignment" Value="Center"/>
-            <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}" CornerRadius="4">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#994203"/>
-                    <Setter Property="Foreground" Value="White"/>
-                </Trigger>
-            </Style.Triggers>
         </Style>
 
         <Style x:Key="ConfigIcons" TargetType="Icon:PackIconMaterial">

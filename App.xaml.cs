@@ -14,6 +14,148 @@ using System.Security.RightsManagement;
 
 namespace Whiteboard
 {
+    // Define the Classes for the Collections
+    public class SchedData : INotifyPropertyChanged
+    {
+        // Property Changed Handler
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+
+
+        // Define the Properties
+        private string? _employeeName;
+        private string? _employeeTitle;
+        private string? _employeePhoto;
+        private string? _employeeCurrentStatus;
+        private string? _employeeMondayStart;
+        private string? _employeeTuesdayStart;
+        private string? _employeeWednesdayStart;
+        private string? _employeeThursdayStart;
+        private string? _employeeFridayStart;
+        private string? _employeeMondayEnd;
+        private string? _employeeTuesdayEnd;
+        private string? _employeeWednesdayEnd;
+        private string? _employeeThursdayEnd;
+        private string? _employeeFridayEnd;
+        private string? _employeeAccountName;
+
+
+
+        // Define the Getters and Setters
+        public string EmployeeName
+        {
+            get => _employeeName;
+            set { _employeeName = value; OnPropertyChanged(nameof(EmployeeName)); }
+        }
+        public string EmployeeTitle
+        {
+            get => _employeeTitle;
+            set { _employeeTitle = value; OnPropertyChanged(nameof(EmployeeTitle)); }
+        }
+        public string EmployeePhoto
+        {
+            get => _employeePhoto;
+            set { _employeePhoto = value; OnPropertyChanged(nameof(EmployeePhoto)); }
+        }
+        public string EmployeeCurrentStatus
+        {
+            get => _employeeCurrentStatus;
+            set { _employeeCurrentStatus = value; OnPropertyChanged(nameof(EmployeeCurrentStatus)); }
+        }
+        public string EmployeeMondayStart
+        {
+            get => _employeeMondayStart;
+            set { _employeeMondayStart = value; OnPropertyChanged(nameof(EmployeeMondayStart)); }
+        }
+        public string EmployeeTuesdayStart
+        {
+            get => _employeeTuesdayStart;
+            set { _employeeTuesdayStart = value; OnPropertyChanged(nameof(EmployeeTuesdayStart)); }
+        }
+        public string EmployeeWednesdayStart
+        {
+            get => _employeeWednesdayStart;
+            set { _employeeWednesdayStart = value; OnPropertyChanged(nameof(EmployeeWednesdayStart)); }
+        }
+        public string EmployeeThursdayStart
+        {
+            get => _employeeThursdayStart;
+            set { _employeeThursdayStart = value; OnPropertyChanged(nameof(EmployeeThursdayStart)); }
+        }
+        public string EmployeeFridayStart
+        {
+            get => _employeeFridayStart;
+            set { _employeeFridayStart = value; OnPropertyChanged(nameof(EmployeeFridayStart)); }
+        }
+        public string EmployeeMondayEnd
+        {
+            get => _employeeMondayEnd;
+            set { _employeeMondayEnd = value; OnPropertyChanged(nameof(EmployeeMondayEnd)); }
+        }
+        public string EmployeeTuesdayEnd
+        {
+            get => _employeeTuesdayEnd;
+            set { _employeeTuesdayEnd = value; OnPropertyChanged(nameof(EmployeeTuesdayEnd)); }
+        }
+        public string EmployeeWednesdayEnd
+        {
+            get => _employeeWednesdayEnd;
+            set { _employeeWednesdayEnd = value; OnPropertyChanged(nameof(EmployeeWednesdayEnd)); }
+        }
+        public string EmployeeThursdayEnd
+        {
+            get => _employeeThursdayEnd;
+            set { _employeeThursdayEnd = value; OnPropertyChanged(nameof(EmployeeThursdayEnd)); }
+        }
+        public string EmployeeFridayEnd
+        {
+            get => _employeeFridayEnd;
+            set { _employeeFridayEnd = value; OnPropertyChanged(nameof(EmployeeFridayEnd)); }
+        }
+        public string EmployeeAccountName
+        {
+            get => _employeeAccountName;
+            set { _employeeAccountName = value; OnPropertyChanged(nameof(EmployeeAccountName)); }
+        }
+    }
+    public class DataBar : INotifyPropertyChanged
+    {
+        // Property Changed Handler
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+
+
+        // Define the Properties
+        public string? EventDate1 { get; set; }
+        public string? EventDescription1 { get; set; }
+        public string? EventDate2 { get; set; }
+        public string? EventDescription2 { get; set; }
+        public string? EventDate3 { get; set; }
+        public string? EventDescription3 { get; set; }
+        public string? EventDate4 { get; set; }
+        public string? EventDescription4 { get; set; }
+        public string? TriviaQuestion { get; set; }
+        public string? TriviaAnswer { get; set; }
+        public string? Contact1 { get; set; }
+        public string? Contact2 { get; set; }
+
+
+
+        // Define the Getters and Setters
+            // TBD
+    };
+
+
+
+    // Application Constructor
     public partial class App : Application
     {
         public void SaveDataToFile(ObservableCollection<SchedData> scheduleData)
@@ -117,126 +259,4 @@ namespace Whiteboard
             }
         }
     }
-    // Define collections
-    public class SchedData : INotifyPropertyChanged
-    {
-        private string? _employeeName;
-        private string? _employeeTitle;
-        private string? _employeePhoto;
-        private string? _employeeCurrentStatus;
-        private string? _employeeMondayStart;
-        private string? _employeeTuesdayStart;
-        private string? _employeeWednesdayStart;
-        private string? _employeeThursdayStart;
-        private string? _employeeFridayStart;
-        private string? _employeeMondayEnd;
-        private string? _employeeTuesdayEnd;
-        private string? _employeeWednesdayEnd;
-        private string? _employeeThursdayEnd;
-        private string? _employeeFridayEnd;
-        private string? _employeeAccountName;
-
-        public string EmployeeName
-        {
-            get => _employeeName;
-            set { _employeeName = value; OnPropertyChanged(nameof(EmployeeName)); }
-        }
-        public string EmployeeTitle
-        {
-            get => _employeeTitle;
-            set { _employeeTitle = value; OnPropertyChanged(nameof(EmployeeTitle)); }
-        }
-        public string EmployeePhoto
-        {
-            get => _employeePhoto;
-            set { _employeePhoto = value; OnPropertyChanged(nameof(EmployeePhoto)); }
-        }
-
-        public string EmployeeCurrentStatus
-        {
-            get => _employeeCurrentStatus;
-            set { _employeeCurrentStatus = value; OnPropertyChanged(nameof(EmployeeCurrentStatus)); }
-        }
-
-        public string EmployeeMondayStart
-        {
-            get => _employeeMondayStart;
-            set { _employeeMondayStart = value; OnPropertyChanged(nameof(EmployeeMondayStart)); }
-        }
-
-        public string EmployeeTuesdayStart
-        {
-            get => _employeeTuesdayStart;
-            set { _employeeTuesdayStart = value; OnPropertyChanged(nameof(EmployeeTuesdayStart)); }
-        }
-        public string EmployeeWednesdayStart
-        {
-            get => _employeeWednesdayStart;
-            set { _employeeWednesdayStart = value; OnPropertyChanged(nameof(EmployeeWednesdayStart)); }
-        }
-        public string EmployeeThursdayStart
-        {
-            get => _employeeThursdayStart;
-            set { _employeeThursdayStart = value; OnPropertyChanged(nameof(EmployeeThursdayStart)); }
-        }
-        public string EmployeeFridayStart
-        {
-            get => _employeeFridayStart;
-            set { _employeeFridayStart = value; OnPropertyChanged(nameof(EmployeeFridayStart)); }
-        }
-        public string EmployeeMondayEnd
-        {
-            get => _employeeMondayEnd;
-            set { _employeeMondayEnd = value; OnPropertyChanged(nameof(EmployeeMondayEnd)); }
-        }
-
-        public string EmployeeTuesdayEnd
-        {
-            get => _employeeTuesdayEnd;
-            set { _employeeTuesdayEnd = value; OnPropertyChanged(nameof(EmployeeTuesdayEnd)); }
-        }
-        public string EmployeeWednesdayEnd
-        {
-            get => _employeeWednesdayEnd;
-            set { _employeeWednesdayEnd = value; OnPropertyChanged(nameof(EmployeeWednesdayEnd)); }
-        }
-        public string EmployeeThursdayEnd
-        {
-            get => _employeeThursdayEnd;
-            set { _employeeThursdayEnd = value; OnPropertyChanged(nameof(EmployeeThursdayEnd)); }
-        }
-        public string EmployeeFridayEnd
-        {
-            get => _employeeFridayEnd;
-            set { _employeeFridayEnd = value; OnPropertyChanged(nameof(EmployeeFridayEnd)); }
-        }
-        public string EmployeeAccountName
-        {
-            get => _employeeAccountName;
-            set { _employeeAccountName = value; OnPropertyChanged(nameof(EmployeeAccountName)); }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-    }
- 
-    public class DataBar
-    {
-        public string? EventDate1 { get; set; }
-        public string? EventDescription1 { get; set; }
-        public string? EventDate2 { get; set; }
-        public string? EventDescription2 { get; set; }
-        public string? EventDate3 { get; set; }
-        public string? EventDescription3 { get; set; }
-        public string? EventDate4 { get; set; }
-        public string? EventDescription4 { get; set; }
-        public string? TriviaQuestion { get; set; }
-        public string? TriviaAnswer { get; set; }
-        public string? Contact1 { get; set; }
-        public string? Contact2 { get; set; }
-
-    };
 }

@@ -17,12 +17,7 @@ namespace Whiteboard
 {
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
+        // Establish Collections
         private DispatcherTimer _timer;
 
         public ObservableCollection<SchedData> ScheduleData { get; set; }
@@ -31,6 +26,9 @@ namespace Whiteboard
 
         public ObservableCollection<SchedData> TempScheduleData { get; set; }
 
+
+
+        // Main Window Constructor
         public MainWindow()
         {
             InitializeComponent();
@@ -60,7 +58,7 @@ namespace Whiteboard
             ClockText.Text = DateTime.Now.ToString("hh:mm:ss tt");
         }
 
-        // Core functions such as top buttons and drag/minimize/close functionality
+        // Core functions such as top buttons and drag/minimize/close and Property Changed handler
         public void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left)
@@ -90,7 +88,16 @@ namespace Whiteboard
                 }
             }
                 }
-        
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+
+
+        // Custom Click Functions
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
