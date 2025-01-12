@@ -71,11 +71,11 @@
 
                                 <!--Status Indicator-->
                                 <StackPanel Orientation="Horizontal" Height="45" HorizontalAlignment="Center">
-                                        <Border x:Name="StatusIndicatorBorder" Background="#778899" CornerRadius="5" Margin="5,10,5,10" Width="175" BorderBrush="White" BorderThickness="2">
+                                        <Border x:Name="StatusIndicatorBorder" Background="#778899" CornerRadius="5" Margin="5,10,5,10" Width="175" BorderBrush="Purple" BorderThickness="2">
                                             <StackPanel Orientation="Horizontal">
                                                 <Grid>
                                                     <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="*"/>
+                                                        <ColumnDefinition Width="55"/>
                                                         <ColumnDefinition Width="*"/>
                                                     </Grid.ColumnDefinitions>
 
@@ -83,8 +83,8 @@
                                                         <RowDefinition Height="*"/>
                                                     </Grid.RowDefinitions>
 
-                                                    <Icon:PackIconMaterial Kind="EmoticonConfused" Height="15" Width="15" Margin="15,0,10,0"  HorizontalAlignment="Center" VerticalAlignment="Center" />
-                                                    <TextBlock Text="{Binding EmployeeCurrentStatus}" Style="{StaticResource StatusIndicatorText}" Margin="15,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1"/>
+                                                    <Icon:PackIconMaterial Kind="EmoticonConfused" Height="15" Width="15" Margin="30,0,0,0"  HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Foreground="Purple"/>
+                                                    <TextBlock Text="{Binding EmployeeCurrentStatus}" Style="{StaticResource StatusIndicatorText}" Margin="10,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1"/>
                                                     
                                                 </Grid>
                                             </StackPanel>
