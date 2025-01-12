@@ -357,7 +357,7 @@ namespace Whiteboard
             }
 
             // Confirm removal
-            var confirmResponse = MessageBox.Show($"Are you sure you want to remove {SelectedEmployee.EmployeeName}?",
+            var confirmResponse = MessageBox.Show($"Are you sure you want to remove {SelectedEmployee.EmployeeName}?\n\nThis is Permanent and cannot be recovered.",
                                                    "Remove Employee", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
             if (confirmResponse == MessageBoxResult.Yes)
@@ -375,6 +375,49 @@ namespace Whiteboard
                 ClearEmployeeEditForm();
             }
         }
+
+        private void UpArrowButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Ensure that the ItemsSource of the DataGrid is an ObservableCollection<SchedData>
+            var selectedItem = (SchedData)EmployeeDataGrid.SelectedItem;
+
+            if (selectedItem != null)
+            {
+                var employeeList = EmployeeDataGrid.ItemsSource as ObservableCollection<SchedData>;
+                if (employeeList == null) return;
+
+                int currentIndex = employeeList.IndexOf(selectedItem);
+
+                // Check if the item is not already the first in the list
+                if (currentIndex > 0)
+                {
+                    // Swap the selected item with the one in front of it
+                    employeeList.Move(currentIndex, currentIndex - 1);
+                }
+            }
+        }
+
+        private void DownArrowButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Ensure that the ItemsSource of the DataGrid is an ObservableCollection<SchedData>
+            var selectedItem = (SchedData)EmployeeDataGrid.SelectedItem;
+
+            if (selectedItem != null)
+            {
+                var employeeList = EmployeeDataGrid.ItemsSource as ObservableCollection<SchedData>;
+                if (employeeList == null) return; 
+
+                int currentIndex = employeeList.IndexOf(selectedItem);
+
+                // Check if the item is not already the last in the list
+                if (currentIndex < employeeList.Count - 1)
+                {
+                    // Swap the selected item with the one below it
+                    employeeList.Move(currentIndex, currentIndex + 1);
+                }
+            }
+        }
+
     }
 }
 
