@@ -18,7 +18,7 @@ namespace Whiteboard
     public class SchedData : INotifyPropertyChanged
     {
         // Property Changed Handler
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler? PropertyChanged;
         protected void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
@@ -46,77 +46,77 @@ namespace Whiteboard
 
 
         // Define the Getters and Setters
-        public string EmployeeName
+        public string? EmployeeName
         {
             get => _employeeName;
             set { _employeeName = value; OnPropertyChanged(nameof(EmployeeName)); }
         }
-        public string EmployeeTitle
+        public string? EmployeeTitle
         {
             get => _employeeTitle;
             set { _employeeTitle = value; OnPropertyChanged(nameof(EmployeeTitle)); }
         }
-        public string EmployeePhoto
+        public string? EmployeePhoto
         {
             get => _employeePhoto;
             set { _employeePhoto = value; OnPropertyChanged(nameof(EmployeePhoto)); }
         }
-        public string EmployeeCurrentStatus
+        public string? EmployeeCurrentStatus
         {
             get => _employeeCurrentStatus;
             set { _employeeCurrentStatus = value; OnPropertyChanged(nameof(EmployeeCurrentStatus)); }
         }
-        public string EmployeeMondayStart
+        public string? EmployeeMondayStart
         {
             get => _employeeMondayStart;
             set { _employeeMondayStart = value; OnPropertyChanged(nameof(EmployeeMondayStart)); }
         }
-        public string EmployeeTuesdayStart
+        public string? EmployeeTuesdayStart
         {
             get => _employeeTuesdayStart;
             set { _employeeTuesdayStart = value; OnPropertyChanged(nameof(EmployeeTuesdayStart)); }
         }
-        public string EmployeeWednesdayStart
+        public string? EmployeeWednesdayStart
         {
             get => _employeeWednesdayStart;
             set { _employeeWednesdayStart = value; OnPropertyChanged(nameof(EmployeeWednesdayStart)); }
         }
-        public string EmployeeThursdayStart
+        public string? EmployeeThursdayStart
         {
             get => _employeeThursdayStart;
             set { _employeeThursdayStart = value; OnPropertyChanged(nameof(EmployeeThursdayStart)); }
         }
-        public string EmployeeFridayStart
+        public string? EmployeeFridayStart
         {
             get => _employeeFridayStart;
             set { _employeeFridayStart = value; OnPropertyChanged(nameof(EmployeeFridayStart)); }
         }
-        public string EmployeeMondayEnd
+        public string? EmployeeMondayEnd
         {
             get => _employeeMondayEnd;
             set { _employeeMondayEnd = value; OnPropertyChanged(nameof(EmployeeMondayEnd)); }
         }
-        public string EmployeeTuesdayEnd
+        public string? EmployeeTuesdayEnd
         {
             get => _employeeTuesdayEnd;
             set { _employeeTuesdayEnd = value; OnPropertyChanged(nameof(EmployeeTuesdayEnd)); }
         }
-        public string EmployeeWednesdayEnd
+        public string? EmployeeWednesdayEnd
         {
             get => _employeeWednesdayEnd;
             set { _employeeWednesdayEnd = value; OnPropertyChanged(nameof(EmployeeWednesdayEnd)); }
         }
-        public string EmployeeThursdayEnd
+        public string? EmployeeThursdayEnd
         {
             get => _employeeThursdayEnd;
             set { _employeeThursdayEnd = value; OnPropertyChanged(nameof(EmployeeThursdayEnd)); }
         }
-        public string EmployeeFridayEnd
+        public string? EmployeeFridayEnd
         {
             get => _employeeFridayEnd;
             set { _employeeFridayEnd = value; OnPropertyChanged(nameof(EmployeeFridayEnd)); }
         }
-        public string EmployeeAccountName
+        public string? EmployeeAccountName
         {
             get => _employeeAccountName;
             set { _employeeAccountName = value; OnPropertyChanged(nameof(EmployeeAccountName)); }
@@ -125,7 +125,7 @@ namespace Whiteboard
     public class DataBar : INotifyPropertyChanged
     {
         // Property Changed Handler
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler? PropertyChanged;
         protected void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
