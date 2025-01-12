@@ -62,28 +62,6 @@ namespace Whiteboard
             }
         }
 
-        private bool IsMaximized = false;
-        public void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            if (e.ClickCount == 2)
-            {
-                if (IsMaximized)
-                {
-                    this.WindowState = WindowState.Normal;
-                    this.Width = 1920;
-                    this.Height = 1080;
-
-                    IsMaximized = false;
-                }
-                else
-                {
-                    this.WindowState = WindowState.Maximized;
-
-                    IsMaximized = true;
-                }
-            }
-        }
-
         private void UploadPictureButton_Click(object sender, RoutedEventArgs e)
         {
             if (SelectedEmployee == null)
@@ -315,40 +293,48 @@ namespace Whiteboard
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
+            var employeeList = EmployeeDataGrid.ItemsSource as ObservableCollection<SchedData>;
+
+            if (employeeList.Count >= 16)
+            {
+                MessageBox.Show("You cannot add more than 16 employees.", "Limit Reached", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
 
             //Prepare form for new data
             ClearEmployeeEditForm();
 
-            // Create a new employee (SchedData) with data from the TextBoxes
-            var newEmployee = new SchedData
-            {
-                EmployeeName = NameTextBox.Text,
-                EmployeePhoto = "pack://application:,,,/Assets/Images/EmployeePlaceholderPhoto.jpg",
-                EmployeeMondayStart = MondayStartTextBox.Text,
-                EmployeeMondayEnd = MondayEndTextBox.Text,
-                EmployeeTuesdayStart = TuesdayStartTextBox.Text,
-                EmployeeTuesdayEnd = TuesdayEndTextBox.Text,
-                EmployeeWednesdayStart = WednesdayStartTextBox.Text,
-                EmployeeWednesdayEnd = WednesdayEndTextBox.Text,
-                EmployeeThursdayStart = ThursdayStartTextBox.Text,
-                EmployeeThursdayEnd = ThursdayEndTextBox.Text,
-                EmployeeFridayStart = FridayStartTextBox.Text,
-                EmployeeFridayEnd = FridayEndTextBox.Text
-            };
+                // Create a new employee (SchedData) with data from the TextBoxes
+                var newEmployee = new SchedData
+                {
+                    EmployeeName = NameTextBox.Text,
+                    EmployeePhoto = "pack://application:,,,/Assets/Images/EmployeePlaceholderPhoto.jpg",
+                    EmployeeMondayStart = MondayStartTextBox.Text,
+                    EmployeeMondayEnd = MondayEndTextBox.Text,
+                    EmployeeTuesdayStart = TuesdayStartTextBox.Text,
+                    EmployeeTuesdayEnd = TuesdayEndTextBox.Text,
+                    EmployeeWednesdayStart = WednesdayStartTextBox.Text,
+                    EmployeeWednesdayEnd = WednesdayEndTextBox.Text,
+                    EmployeeThursdayStart = ThursdayStartTextBox.Text,
+                    EmployeeThursdayEnd = ThursdayEndTextBox.Text,
+                    EmployeeFridayStart = FridayStartTextBox.Text,
+                    EmployeeFridayEnd = FridayEndTextBox.Text
+                };
 
-            // Add the new employee to the ObservableCollection
-            ((ObservableCollection<SchedData>)EmployeeDataGrid.ItemsSource).Add(newEmployee);
+                // Add the new employee to the ObservableCollection
+                ((ObservableCollection<SchedData>)EmployeeDataGrid.ItemsSource).Add(newEmployee);
 
-            // Save the changes to file
-            ((App)Application.Current).SaveDataToFile(EmployeeDataGrid.ItemsSource as ObservableCollection<SchedData>);
+                // Save the changes to file
+                ((App)Application.Current).SaveDataToFile(EmployeeDataGrid.ItemsSource as ObservableCollection<SchedData>);
 
-            // Optionally, refresh the DataGrid if needed
-            EmployeeDataGrid.Items.Refresh();
+                // Optionally, refresh the DataGrid if needed
+                EmployeeDataGrid.Items.Refresh();
 
-            // Auto-select the newly added employee
-            EmployeeDataGrid.SelectedItem = newEmployee;
+                // Auto-select the newly added employee
+                EmployeeDataGrid.SelectedItem = newEmployee;
         }
 
+        
         private void RemoveButton_Click(object sender, RoutedEventArgs e)
         {
             // Ensure that an employee is selected
