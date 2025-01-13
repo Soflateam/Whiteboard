@@ -19,7 +19,6 @@
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="30"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="auto"/>
@@ -29,11 +28,11 @@
         <Border Background="#778899" Grid.ColumnSpan="3" Grid.RowSpan="1">
             <Grid Grid.Row="0" Grid.Column="2">
                 
-                <Button Style="{StaticResource CloseButton}" Margin="0,15,15,0" HorizontalAlignment="Right" Click="CloseButton_Click" Grid.RowSpan="2">
+                <Button Style="{StaticResource CloseButton}" Margin="0,15,15,0" VerticalAlignment="Top" HorizontalAlignment="Right" Click="CloseButton_Click" Grid.RowSpan="2" Panel.ZIndex="5">
                     <Icon:PackIconMaterial Kind="CloseThick"/>
                 </Button>
 
-                <Button Style="{StaticResource TopButton}" Margin="0,15,50,0" HorizontalAlignment="Right" Click="MinimizeButton_Click" Grid.RowSpan="2">
+                <Button Style="{StaticResource TopButton}" Margin="0,15,50,0" VerticalAlignment="Top" HorizontalAlignment="Right" Click="MinimizeButton_Click" Grid.RowSpan="2" Panel.ZIndex="5">
                     <Icon:PackIconMaterial Kind="WindowMinimize"/>
                 </Button>
                 
@@ -41,7 +40,7 @@
         </Border>
         
         <!--Employee Content-->
-        <Grid Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2" Margin="20,5,20,0">
+        <Grid Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2" Margin="20,35,20,0">
             
             <Grid.RowDefinitions>
                 <RowDefinition Height="25*"/>
