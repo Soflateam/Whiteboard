@@ -146,11 +146,11 @@ namespace Whiteboard
         public string? TriviaAnswer { get; set; }
         public string? Contact1 { get; set; }
         public string? Contact2 { get; set; }
-
+        public string? Contact3 { get; set; }
 
 
         // Define the Getters and Setters
-            // TBD
+        // TBD
     };
 
 
