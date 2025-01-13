@@ -18,6 +18,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.SignalR;
 using System.Threading;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 
 namespace Whiteboard
@@ -267,46 +268,103 @@ namespace Whiteboard
             }
         }
 
-        [STAThread]
-        public static void ChatterMain()
+        public App()
         {
-            // Start SignalR server in a new task/thread
-            Task.Run(() => ChatProgram.ChatMain(new string[] { }));
+            // Application initialization logic here (if needed)
+        }
 
-            // Run the WPF application
-            var app = new App();
-            app.InitializeComponent();
-            app.Run();
+
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            base.OnStartup(e);
+
+            // Start the SignalR server in a background task
+            Task.Run(() => DataSendReceiveProgram.MainTransfer(new string[] { }));
+
+            // Initialize and show the main window (no need for this.Run() since it's automatic)
+            var mainWindow = new MainWindow();
+            mainWindow.Show();
         }
     }
 
-    public class ChatHub : Hub
+
+
+
+    public class DataHub : Hub
     {
+        private static List<SchedData> _schedDataCollection = new List<SchedData>();
+
+        // Method to update employee data (called by the client)
         public async Task UpdateEmployeeData(string username, string propertyName, string newValue)
         {
-            await Clients.All.SendAsync("EmployeeDataUpdated", username, propertyName, newValue);
+            // Check if the username matches any employee in the collection
+            var employee = _schedDataCollection.FirstOrDefault(e => e.EmployeeName.Equals(username, StringComparison.OrdinalIgnoreCase));
+
+            if (employee != null)
+            {
+                // Match found, update the employee's property
+                switch (propertyName)
+                {
+                    case "EmployeeCurrentStatus":
+                        employee.EmployeeCurrentStatus = newValue;
+                        break;
+
+                    default:
+                        // Handle unrecognized property names if necessary
+                        break;
+                }
+
+                // Notify all clients about the update
+                await Clients.All.SendAsync("EmployeeDataUpdated", username, propertyName, newValue);
+            }
+            else
+            {
+                // If no matching employee found, do nothing
+                // You could log or notify that no update was made (optional)
+                Console.WriteLine($"No matching employee found for username: {username}");
+            }
         }
     }
 
-    public class ChatProgram
+    public class DataSendReceiveProgram
     {
-        public static void ChatMain(string[] args)
+        public static void MainTransfer(string[] args)
         {
-            // Create WebApplicationBuilder
-            var builder = WebApplication.CreateBuilder(args);
+            try
+            {
+                Console.WriteLine("Initializing SignalR server...");
 
-            // Add SignalR services
-            builder.Services.AddSignalR();
+                // Create WebApplicationBuilder
+                var builder = WebApplication.CreateBuilder(args);
 
-            // Create WebApplication
-            var app = builder.Build();
+                // Add SignalR services
+                builder.Services.AddSignalR();
 
-            // Set up routing and SignalR hub mapping
-            app.UseRouting();
-            app.MapHub<ChatHub>("/chathub");
+                // Explicitly configure Kestrel to listen on port 9852
+                builder.WebHost.ConfigureKestrel(serverOptions =>
+                {
+                    serverOptions.ListenLocalhost(9852); // Ensure that Kestrel listens on port 9852
+                });
 
-            // Start the application
-            app.Run("http://localhost:5000");
+                // Create WebApplication
+                var app = builder.Build();
+
+                // Set up routing and SignalR hub mapping
+                app.UseRouting();
+                app.MapHub<DataHub>("/Whiteboard");
+
+                // Debugging message to confirm that the server is running
+                Console.WriteLine("SignalR server should be running now.");
+
+                // Run the application in the background without blocking the UI thread
+                Task.Run(() => app.Run()); // Running the SignalR server on a separate task
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error during server setup: {ex.Message}");
+            }
         }
+
     }
+
 }
