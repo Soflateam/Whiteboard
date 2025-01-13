@@ -11,6 +11,14 @@ using CsvHelper.Configuration;
 using CsvHelper;
 using System.Collections.ObjectModel;
 using System.Security.RightsManagement;
+using System;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.SignalR;
+using System.Threading;
+
 
 namespace Whiteboard
 {
@@ -257,6 +265,48 @@ namespace Whiteboard
             {
                 Console.WriteLine($"Error: {ex.Message}");
             }
+        }
+
+        [STAThread]
+        public static void ChatterMain()
+        {
+            // Start SignalR server in a new task/thread
+            Task.Run(() => ChatProgram.ChatMain(new string[] { }));
+
+            // Run the WPF application
+            var app = new App();
+            app.InitializeComponent();
+            app.Run();
+        }
+    }
+
+    public class ChatHub : Hub
+    {
+        public async Task UpdateEmployeeData(string username, string propertyName, string newValue)
+        {
+            await Clients.All.SendAsync("EmployeeDataUpdated", username, propertyName, newValue);
+        }
+    }
+
+    public class ChatProgram
+    {
+        public static void ChatMain(string[] args)
+        {
+            // Create WebApplicationBuilder
+            var builder = WebApplication.CreateBuilder(args);
+
+            // Add SignalR services
+            builder.Services.AddSignalR();
+
+            // Create WebApplication
+            var app = builder.Build();
+
+            // Set up routing and SignalR hub mapping
+            app.UseRouting();
+            app.MapHub<ChatHub>("/chathub");
+
+            // Start the application
+            app.Run("http://localhost:5000");
         }
     }
 }
