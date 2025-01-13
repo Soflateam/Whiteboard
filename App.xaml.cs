@@ -270,10 +270,10 @@ namespace Whiteboard
 
         public App()
         {
-            // Application initialization logic here (if needed)
+          
         }
 
-
+        // Starts SignalR Server, then starts the MainWindow for App
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
@@ -281,7 +281,7 @@ namespace Whiteboard
             // Start the SignalR server in a background task
             Task.Run(() => DataSendReceiveProgram.MainTransfer(new string[] { }));
 
-            // Initialize and show the main window (no need for this.Run() since it's automatic)
+            // Show the main window
             var mainWindow = new MainWindow();
             mainWindow.Show();
         }
@@ -289,10 +289,13 @@ namespace Whiteboard
 
 
 
-
+    // SignalR Connection Hosting
     public class DataHub : Hub
     {
         private static List<SchedData> _schedDataCollection = new List<SchedData>();
+
+
+
 
         // Method to update employee data (called by the client)
         public async Task UpdateEmployeeData(string username, string propertyName, string newValue)
@@ -319,9 +322,7 @@ namespace Whiteboard
             }
             else
             {
-                // If no matching employee found, do nothing
-                // You could log or notify that no update was made (optional)
-                Console.WriteLine($"No matching employee found for username: {username}");
+
             }
         }
     }
@@ -332,8 +333,6 @@ namespace Whiteboard
         {
             try
             {
-                Console.WriteLine("Initializing SignalR server...");
-
                 // Create WebApplicationBuilder
                 var builder = WebApplication.CreateBuilder(args);
 
@@ -343,7 +342,7 @@ namespace Whiteboard
                 // Explicitly configure Kestrel to listen on port 9852
                 builder.WebHost.ConfigureKestrel(serverOptions =>
                 {
-                    serverOptions.ListenLocalhost(9852); // Ensure that Kestrel listens on port 9852
+                    serverOptions.ListenLocalhost(9852);
                 });
 
                 // Create WebApplication
@@ -353,15 +352,12 @@ namespace Whiteboard
                 app.UseRouting();
                 app.MapHub<DataHub>("/Whiteboard");
 
-                // Debugging message to confirm that the server is running
-                Console.WriteLine("SignalR server should be running now.");
-
-                // Run the application in the background without blocking the UI thread
-                Task.Run(() => app.Run()); // Running the SignalR server on a separate task
+                // Running the SignalR server on a separate task
+                Task.Run(() => app.Run()); 
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error during server setup: {ex.Message}");
+
             }
         }
 
