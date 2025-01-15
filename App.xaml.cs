@@ -18,10 +18,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.SignalR;
 using System.Threading;
-using static Whiteboard.App.EmployeeHub;
 using static Whiteboard.App;
-
-
+using System.Runtime.InteropServices.JavaScript;
 
 namespace Whiteboard
 {
@@ -30,12 +28,11 @@ namespace Whiteboard
     {
         // Property Changed Handler
         public event PropertyChangedEventHandler? PropertyChanged;
+
         protected void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
-
 
         // Define the Properties
         private string? _employeeName;
@@ -54,95 +51,167 @@ namespace Whiteboard
         private string? _employeeFridayEnd;
         private string? _employeeAccountName;
 
-
-
         // Define the Getters and Setters
         public string? EmployeeName
         {
             get => _employeeName;
-            set { _employeeName = value; OnPropertyChanged(nameof(EmployeeName)); }
+            set
+            {
+                _employeeName = value;
+                OnPropertyChanged(nameof(EmployeeName));
+            }
         }
+
         public string? EmployeeTitle
         {
             get => _employeeTitle;
-            set { _employeeTitle = value; OnPropertyChanged(nameof(EmployeeTitle)); }
+            set
+            {
+                _employeeTitle = value;
+                OnPropertyChanged(nameof(EmployeeTitle));
+            }
         }
+
         public string? EmployeePhoto
         {
             get => _employeePhoto;
-            set { _employeePhoto = value; OnPropertyChanged(nameof(EmployeePhoto)); }
+            set
+            {
+                _employeePhoto = value;
+                OnPropertyChanged(nameof(EmployeePhoto));
+            }
         }
+
         public string? EmployeeCurrentStatus
         {
             get => _employeeCurrentStatus;
-            set { _employeeCurrentStatus = value; OnPropertyChanged(nameof(EmployeeCurrentStatus)); }
+            set
+            {
+                _employeeCurrentStatus = value;
+                OnPropertyChanged(nameof(EmployeeCurrentStatus));
+            }
         }
+
         public string? EmployeeMondayStart
         {
             get => _employeeMondayStart;
-            set { _employeeMondayStart = value; OnPropertyChanged(nameof(EmployeeMondayStart)); }
+            set
+            {
+                _employeeMondayStart = value;
+                OnPropertyChanged(nameof(EmployeeMondayStart));
+            }
         }
+
         public string? EmployeeTuesdayStart
         {
             get => _employeeTuesdayStart;
-            set { _employeeTuesdayStart = value; OnPropertyChanged(nameof(EmployeeTuesdayStart)); }
+            set
+            {
+                _employeeTuesdayStart = value;
+                OnPropertyChanged(nameof(EmployeeTuesdayStart));
+            }
         }
+
         public string? EmployeeWednesdayStart
         {
             get => _employeeWednesdayStart;
-            set { _employeeWednesdayStart = value; OnPropertyChanged(nameof(EmployeeWednesdayStart)); }
+            set
+            {
+                _employeeWednesdayStart = value;
+                OnPropertyChanged(nameof(EmployeeWednesdayStart));
+            }
         }
+
         public string? EmployeeThursdayStart
         {
             get => _employeeThursdayStart;
-            set { _employeeThursdayStart = value; OnPropertyChanged(nameof(EmployeeThursdayStart)); }
+            set
+            {
+                _employeeThursdayStart = value;
+                OnPropertyChanged(nameof(EmployeeThursdayStart));
+            }
         }
+
         public string? EmployeeFridayStart
         {
             get => _employeeFridayStart;
-            set { _employeeFridayStart = value; OnPropertyChanged(nameof(EmployeeFridayStart)); }
+            set
+            {
+                _employeeFridayStart = value;
+                OnPropertyChanged(nameof(EmployeeFridayStart));
+            }
         }
+
         public string? EmployeeMondayEnd
         {
             get => _employeeMondayEnd;
-            set { _employeeMondayEnd = value; OnPropertyChanged(nameof(EmployeeMondayEnd)); }
+            set
+            {
+                _employeeMondayEnd = value;
+                OnPropertyChanged(nameof(EmployeeMondayEnd));
+            }
         }
+
         public string? EmployeeTuesdayEnd
         {
             get => _employeeTuesdayEnd;
-            set { _employeeTuesdayEnd = value; OnPropertyChanged(nameof(EmployeeTuesdayEnd)); }
+            set
+            {
+                _employeeTuesdayEnd = value;
+                OnPropertyChanged(nameof(EmployeeTuesdayEnd));
+            }
         }
+
         public string? EmployeeWednesdayEnd
         {
             get => _employeeWednesdayEnd;
-            set { _employeeWednesdayEnd = value; OnPropertyChanged(nameof(EmployeeWednesdayEnd)); }
+            set
+            {
+                _employeeWednesdayEnd = value;
+                OnPropertyChanged(nameof(EmployeeWednesdayEnd));
+            }
         }
+
         public string? EmployeeThursdayEnd
         {
             get => _employeeThursdayEnd;
-            set { _employeeThursdayEnd = value; OnPropertyChanged(nameof(EmployeeThursdayEnd)); }
+            set
+            {
+                _employeeThursdayEnd = value;
+                OnPropertyChanged(nameof(EmployeeThursdayEnd));
+            }
         }
+
         public string? EmployeeFridayEnd
         {
             get => _employeeFridayEnd;
-            set { _employeeFridayEnd = value; OnPropertyChanged(nameof(EmployeeFridayEnd)); }
+            set
+            {
+                _employeeFridayEnd = value;
+                OnPropertyChanged(nameof(EmployeeFridayEnd));
+            }
         }
+
         public string? EmployeeAccountName
         {
             get => _employeeAccountName;
-            set { _employeeAccountName = value; OnPropertyChanged(nameof(EmployeeAccountName)); }
+            set
+            {
+                _employeeAccountName = value;
+                OnPropertyChanged(nameof(EmployeeAccountName));
+            }
         }
     }
+
     public class DataBar : INotifyPropertyChanged
     {
         // Property Changed Handler
         public event PropertyChangedEventHandler? PropertyChanged;
+
         protected void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
-
 
         // Define the Properties
         public string? EventDate1 { get; set; }
@@ -158,17 +227,11 @@ namespace Whiteboard
         public string? Contact1 { get; set; }
         public string? Contact2 { get; set; }
         public string? Contact3 { get; set; }
-
-
-        // Define the Getters and Setters
-        // TBD
-    };
+    }
 
     // Application Constructor
     public partial class App : Application
     {
-        private IHost _signalRHost;
-
         public void SaveDataToFile(ObservableCollection<SchedData> scheduleData)
         {
             try
@@ -237,30 +300,34 @@ namespace Whiteboard
             }
         }
 
-        public void LoadDataTableFromFile(ObservableCollection<DataBar> BottomTableCollection)
+        public void LoadDataTableFromFile(ObservableCollection<DataBar> bottomTableCollection)
         {
             try
             {
                 var baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
                 var dataDirectory = Path.Combine(baseDirectory, "Data");
                 var openFilePath = Path.Combine(dataDirectory, "DataTable.csv");
+
                 if (!File.Exists(openFilePath))
                 {
                     Console.WriteLine("The file does not exist.");
                     return;
                 }
+
                 var configCsv = new CsvConfiguration(CultureInfo.InvariantCulture)
                 {
                     HasHeaderRecord = true
                 };
+
                 using (var reader = new StreamReader(openFilePath))
                 using (var csv = new CsvReader(reader, configCsv))
                 {
-                    var datarecords = csv.GetRecords<DataBar>().ToList();
-                    BottomTableCollection.Clear();
-                    foreach (var databarrecord in datarecords)
+                    var dataRecords = csv.GetRecords<DataBar>().ToList();
+                    bottomTableCollection.Clear();
+
+                    foreach (var dataBarRecord in dataRecords)
                     {
-                        BottomTableCollection.Add(databarrecord);
+                        bottomTableCollection.Add(dataBarRecord);
                     }
                 }
             }
@@ -269,97 +336,5 @@ namespace Whiteboard
                 Console.WriteLine($"Error: {ex.Message}");
             }
         }
-
-        public App()
-        {
-
-        }
-
-        // Starts SignalR Server, then starts the MainWindow for App
-        protected override async void OnStartup(StartupEventArgs e)
-        {
-            base.OnStartup(e);
-
-            // Start SignalR server
-            await StartSignalRServer();
-        }
-
-        public async Task StartSignalRServer()
-        {
-            // Create the Host for SignalR server
-            _signalRHost = Host.CreateDefaultBuilder()
-                .ConfigureServices((context, services) =>
-                {
-                    services.AddSignalR();
-                    services.AddSingleton<ObservableCollection<SchedData>>();
-                    services.AddSingleton<EmployeeService>();
-                })
-                .Build();
-
-            // Configure to listen on a specific IP and Port
-            var serverUrl = "http://localhost:9852/"; // Base URL for HttpListener
-            var server = new System.Net.HttpListener();
-            server.Prefixes.Add(serverUrl); // Add the base URL without extra path
-
-            // Start the listener
-            server.Start();
-            MessageBox.Show("Server Online","Online");
-
-            // Run the SignalR server asynchronously
-            await _signalRHost.StartAsync();
-        }
-
-        protected override async void OnExit(ExitEventArgs e)
-        {
-            await _signalRHost?.StopAsync();
-            base.OnExit(e);
-        }
-
-        public class EmployeeService
-        {
-            private readonly ObservableCollection<SchedData> _scheduleData;
-
-            public EmployeeService(ObservableCollection<SchedData> scheduleData)
-            {
-                _scheduleData = scheduleData;
-            }
-
-            public void UpdateEmployeeData(string username, string employeeStatus, string newValue)
-            {
-                var employee = _scheduleData.FirstOrDefault(e => e.EmployeeName.Equals(username, StringComparison.OrdinalIgnoreCase));
-                if (employee != null)
-                {
-                    switch (employeeStatus)
-                    {
-                        case "EmployeeCurrentStatus":
-                            employee.EmployeeCurrentStatus = newValue;
-                            break;
-                    }
-                }
-            }
-        }
-
-        public class EmployeeHub : Hub
-        {
-            private readonly EmployeeService _employeeService;
-
-            // Injecting EmployeeService into the EmployeeHub
-            public EmployeeHub(EmployeeService employeeService)
-            {
-                _employeeService = employeeService;
-            }
-
-            // This method can be called from the client-side to update the employee status
-            public async Task UpdateEmployeeStatus(string username, string status, string newValue)
-            {
-                // Call the service to update the employee's data
-                _employeeService.UpdateEmployeeData(username, status, newValue);
-
-                // Optionally notify all clients about the update (example)
-                await Clients.All.SendAsync("ReceiveEmployeeStatusUpdate", username, newValue);
-            }
-        }
-
-
     }
 }
