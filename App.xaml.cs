@@ -18,7 +18,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.SignalR;
 using System.Threading;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+using static Whiteboard.App.EmployeeHub;
+using static Whiteboard.App;
+
 
 
 namespace Whiteboard
@@ -162,11 +164,11 @@ namespace Whiteboard
         // TBD
     };
 
-
-
     // Application Constructor
     public partial class App : Application
     {
+        private IHost _signalRHost;
+
         public void SaveDataToFile(ObservableCollection<SchedData> scheduleData)
         {
             try
@@ -270,97 +272,94 @@ namespace Whiteboard
 
         public App()
         {
-          
+
         }
 
         // Starts SignalR Server, then starts the MainWindow for App
-        protected override void OnStartup(StartupEventArgs e)
+        protected override async void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
 
-            // Start the SignalR server in a background task
-            Task.Run(() => DataSendReceiveProgram.MainTransfer(new string[] { }));
-
-            // Show the main window
-            var mainWindow = new MainWindow();
-            mainWindow.Show();
+            // Start SignalR server
+            await StartSignalRServer();
         }
-    }
 
-
-
-    // SignalR Connection Hosting
-    public class DataHub : Hub
-    {
-        private static List<SchedData> _schedDataCollection = new List<SchedData>();
-
-
-
-
-        // Method to update employee data (called by the client)
-        public async Task UpdateEmployeeData(string username, string propertyName, string newValue)
+        public async Task StartSignalRServer()
         {
-            // Check if the username matches any employee in the collection
-            var employee = _schedDataCollection.FirstOrDefault(e => e.EmployeeName.Equals(username, StringComparison.OrdinalIgnoreCase));
-
-            if (employee != null)
-            {
-                // Match found, update the employee's property
-                switch (propertyName)
+            // Create the Host for SignalR server
+            _signalRHost = Host.CreateDefaultBuilder()
+                .ConfigureServices((context, services) =>
                 {
-                    case "EmployeeCurrentStatus":
-                        employee.EmployeeCurrentStatus = newValue;
-                        break;
+                    services.AddSignalR();
+                    services.AddSingleton<ObservableCollection<SchedData>>();
+                    services.AddSingleton<EmployeeService>();
+                })
+                .Build();
 
-                    default:
-                        // Handle unrecognized property names if necessary
-                        break;
+            // Configure to listen on a specific IP and Port
+            var serverUrl = "http://localhost:9852/"; // Base URL for HttpListener
+            var server = new System.Net.HttpListener();
+            server.Prefixes.Add(serverUrl); // Add the base URL without extra path
+
+            // Start the listener
+            server.Start();
+            MessageBox.Show("Server Online","Online");
+
+            // Run the SignalR server asynchronously
+            await _signalRHost.StartAsync();
+        }
+
+        protected override async void OnExit(ExitEventArgs e)
+        {
+            await _signalRHost?.StopAsync();
+            base.OnExit(e);
+        }
+
+        public class EmployeeService
+        {
+            private readonly ObservableCollection<SchedData> _scheduleData;
+
+            public EmployeeService(ObservableCollection<SchedData> scheduleData)
+            {
+                _scheduleData = scheduleData;
+            }
+
+            public void UpdateEmployeeData(string username, string employeeStatus, string newValue)
+            {
+                var employee = _scheduleData.FirstOrDefault(e => e.EmployeeName.Equals(username, StringComparison.OrdinalIgnoreCase));
+                if (employee != null)
+                {
+                    switch (employeeStatus)
+                    {
+                        case "EmployeeCurrentStatus":
+                            employee.EmployeeCurrentStatus = newValue;
+                            break;
+                    }
                 }
-
-                // Notify all clients about the update
-                await Clients.All.SendAsync("EmployeeDataUpdated", username, propertyName, newValue);
-            }
-            else
-            {
-
             }
         }
-    }
 
-    public class DataSendReceiveProgram
-    {
-        public static void MainTransfer(string[] args)
+        public class EmployeeHub : Hub
         {
-            try
+            private readonly EmployeeService _employeeService;
+
+            // Injecting EmployeeService into the EmployeeHub
+            public EmployeeHub(EmployeeService employeeService)
             {
-                // Create WebApplicationBuilder
-                var builder = WebApplication.CreateBuilder(args);
-
-                // Add SignalR services
-                builder.Services.AddSignalR();
-
-                // Explicitly configure Kestrel to listen on port 9852
-                builder.WebHost.ConfigureKestrel(serverOptions =>
-                {
-                    serverOptions.ListenLocalhost(9852);
-                });
-
-                // Create WebApplication
-                var app = builder.Build();
-
-                // Set up routing and SignalR hub mapping
-                app.UseRouting();
-                app.MapHub<DataHub>("/Whiteboard");
-
-                // Running the SignalR server on a separate task
-                Task.Run(() => app.Run()); 
+                _employeeService = employeeService;
             }
-            catch (Exception ex)
-            {
 
+            // This method can be called from the client-side to update the employee status
+            public async Task UpdateEmployeeStatus(string username, string status, string newValue)
+            {
+                // Call the service to update the employee's data
+                _employeeService.UpdateEmployeeData(username, status, newValue);
+
+                // Optionally notify all clients about the update (example)
+                await Clients.All.SendAsync("ReceiveEmployeeStatusUpdate", username, newValue);
             }
         }
 
-    }
 
+    }
 }

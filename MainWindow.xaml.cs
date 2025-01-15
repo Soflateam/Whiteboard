@@ -15,6 +15,8 @@ using System.Windows.Threading;
 using System.Globalization;
 using System.Net.NetworkInformation;
 using System.Diagnostics;
+using Microsoft.AspNetCore.SignalR;
+using static Whiteboard.App;
 
 namespace Whiteboard
 {
@@ -45,7 +47,6 @@ namespace Whiteboard
 
 
 
-
         // Main Window Constructor
         public MainWindow()
         {
@@ -61,6 +62,7 @@ namespace Whiteboard
             app.LoadDataFromFile(ScheduleData);
             app.LoadDataFromFile(TempScheduleData);
             app.LoadDataTableFromFile(BottomDataTable);
+
             this.WindowState = WindowState.Maximized;
 
             // Create and set up the DispatcherTimer
